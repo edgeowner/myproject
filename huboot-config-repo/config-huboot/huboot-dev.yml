@@ -1,0 +1,67 @@
+eureka-server:
+  url:
+datasource:
+  mysql:
+    url:
+    username:
+    password:
+    driverclass: net.sf.log4jdbc.DriverSpy
+redis:
+  database: 1
+  host:
+  port: 6379
+  password:
+  model: local
+mongodb:
+  host:
+  port: 27017
+  database:
+  username:
+  password:
+xiehua-server:
+  host:
+  port: 7500
+profile:
+  active: dev
+app:
+  wechat:
+    miniapp:
+      lastTemplateId: 3
+    open:
+      componentAppId:
+      componentSecret:
+      componentToken:
+      componentAesKey:
+    thdcWeixinUid:
+    boxWeixinUid:
+    zkskWeixinUid:
+  sms:
+    dahantc:
+      account: 111111
+      password: 111111
+      open: false
+  domain:
+    zkfront:
+    thdcFront:
+    sjhtFront:
+
+upload:
+  location: //static/
+  domain: https://dev-.zchz.com/
+#同行调车系统url
+host:
+  b2b: ht
+  b2c: http:/
+
+#jwt配置
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800 #7days
+  tokenHead: "Bearer "
+  permit: [
+
+                {"name":"小程序权","url":"/weixin_mini_app/miniAppUser/**"},
+                {"name":"小程序权socket","url":"/websocket/**"},
+                {"name":"小程序权socket","url":"/weixin_mini_app/websocket/**"}
+              ]
