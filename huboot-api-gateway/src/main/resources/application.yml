@@ -1,0 +1,45 @@
+server:
+  port: 7200
+  tomcat:
+    uri-encoding: UTF-8
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${eureka.url}
+
+zuul:
+  host:
+    max-total-connections: 1000
+  routes:
+    api-xiehua:
+      path: /api-xiehua/**
+      service-id: xiehua-server
+  sensitive-headers: #敏感头设置为空，否则cookie不能给前端
+  ignore-security-headers: false
+
+#  https://my.oschina.net/didispace/blog/890237
+#  https://my.oschina.net/u/3260714/blog/874737
+# Increase the Hystrix timeout to 60s (globally)
+# http://blog.csdn.net/jrn1012/article/details/77837744
+# 监控 http://m.blog.csdn.net/u012702547/article/details/78224483
+# 熔断 HystrixCommandProperties  配置类
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        #断路器的超时时间,断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试。
+        #isolation:
+          #thread:
+            #timeoutInMilliseconds: 100000
+
+# 均衡负载  DefaultClientConfigImpl  配置类
+ribbon:
+  #ribbon请求连接的超时时间
+  ConnectTimeout: 2500
+  #请求处理的超时时间
+  ReadTimeout: 100000

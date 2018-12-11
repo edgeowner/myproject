@@ -1,0 +1,21 @@
+server:
+  port: ${eureka.port}
+  tomcat:
+    uri-encoding: UTF-8
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: ${eureka.url}
+  server:
+    enable-self-preservation: ${eureka.selfpreservation}
+    eviction-interval-timer-in-ms: 10000
+    
+spring:
+  thymeleaf:
+    prefix: classpath:/pages/
+    suffix: .html
+    cache: false
+    mode: HTML5

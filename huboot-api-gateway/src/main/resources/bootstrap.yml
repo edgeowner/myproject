@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: hu-gateway-server
+  cloud:
+    config:
+      name: gateway
+      profile: ${config.profile:local}
+      label: newconfig
+      uri: ${config.uri:http://}
+  profiles:
+    active: ${config.profile:local}

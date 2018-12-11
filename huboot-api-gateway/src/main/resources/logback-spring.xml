@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[ %-5level] [%thread] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} [%line] - %msg%n </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <springProfile name="dev,test,uat,prod,docker">
+        <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>/xiehua/logs/gateway-server/spring.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>/xiehua/logs/gateway-server/spring.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>[ %-5level] [%thread] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} [%line] - %msg%n </pattern>
+            </encoder>
+        </appender>
+    </springProfile>
+
+    <!-- project default level -->
+    <!--OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL-->
+    <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,,,, -->
+    <springProfile name="local">
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="com.xiehua" level="DEBUG" />
+        <root level="INFO">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+    <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
+    <springProfile name="dev,test,uat,docker">
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="com.xiehua" level="DEBUG" />
+        <root level="INFO">
+            <appender-ref ref="console" />
+            <appender-ref ref="rollingFile" />
+        </root>
+    </springProfile>
+
+    <!-- 生产环境. -->
+    <springProfile name="prod">
+        <logger name="org.springframework.web" level="ERROR"/>
+        <logger name="com.xiehua" level="ERROR" />
+        <root level="INFO">
+            <appender-ref ref="console" />
+            <appender-ref ref="rollingFile" />
+        </root>
+    </springProfile>
+
+</configuration>
