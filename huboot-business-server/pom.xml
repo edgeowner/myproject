@@ -166,10 +166,6 @@
             <artifactId>kaptcha</artifactId>
             <version>2.3.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.xiehua</groupId>
-            <artifactId>xiehua-framework</artifactId>
-        </dependency>
         <!-- 在JDK8项目中使用jackson -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

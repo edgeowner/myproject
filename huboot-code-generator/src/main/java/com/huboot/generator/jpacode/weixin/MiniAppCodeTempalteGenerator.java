@@ -1,4 +1,4 @@
-package com.xiehua.generator.jpacode.weixin;
+package com.huboot.generator.jpacode.weixin;
 
 
 
@@ -17,7 +17,7 @@ public class MiniAppCodeTempalteGenerator extends AbstractGenerator {
         String serviceModule = "weixin_service";
         String tableDesc = "小程序代码模板信息表";
         try {
-            GeneratorUtils generator = new GeneratorUtils(ZYJ_ROOT);
+            GeneratorUtils generator = new GeneratorUtils("");
 
             List<String> generatorList = new ArrayList<String>();
             generatorList.add("genertorController");// 生成ENTITY

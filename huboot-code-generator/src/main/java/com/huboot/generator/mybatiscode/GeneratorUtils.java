@@ -1,4 +1,4 @@
-package com.xiehua.generator.mybatiscode;
+package com.huboot.generator.mybatiscode;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.velocity.Template;
@@ -222,7 +222,7 @@ public class GeneratorUtils {
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init();
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type
                 + ".vm");
         File domainFile = new File(DAO_PATH + "/src/main/java/"
                 + context.get("daoBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
@@ -235,7 +235,7 @@ public class GeneratorUtils {
         writer.flush();
         writer.close();
         type = "dao.impl";
-        template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         domainFile = new File(DAO_PATH + "/src/main/java/"
                 + context.get("daoBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
                 + "/impl/" + classname + "DaoImpl.java");
@@ -258,7 +258,7 @@ public class GeneratorUtils {
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init();
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type
                 + ".vm");
         File domainFile = new File(DAO_PATH + "/src/main/java/"
                 + context.get("daoBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
@@ -284,7 +284,7 @@ public class GeneratorUtils {
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init();
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         File domainFile = new File(DOMAIN_PATH + "/src/main/java/"
                 + context.get("domainBasePackage").toString().replaceAll("\\.", "/")
                 + "/" + context.get("moduleName")
@@ -307,7 +307,7 @@ public class GeneratorUtils {
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init();
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         File dtoFile = new File(DTO_PATH + "/src/main/java/" + context.get("dtoBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
                 + "/" + classname + "DTO.java");
         if (!dtoFile.getParentFile().exists()) {
@@ -329,7 +329,7 @@ public class GeneratorUtils {
         Velocity.init();
 
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type
                 + ".vm");
         File domainFile = new File(MANAGER_PATH + "/src/main/java/"
                 + context.get("managerBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
@@ -342,7 +342,7 @@ public class GeneratorUtils {
         writer.flush();
         writer.close();
         type = "manager.impl";
-        template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         domainFile = new File(MANAGER_PATH + "/src/main/java/"
                 + context.get("managerBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
                 + "/impl/" + classname + "ManagerImpl.java");
@@ -366,7 +366,7 @@ public class GeneratorUtils {
         Velocity.init();
 
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type
                 + ".vm");
         File domainFile = new File(SERVICE_PATH + "/src/main/java/"
                 + context.get("serviceBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
@@ -379,7 +379,7 @@ public class GeneratorUtils {
         writer.flush();
         writer.close();
         type = "service.impl";
-        template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         domainFile = new File(SERVICE_PATH + "/src/main/java/"
                 + context.get("serviceBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
                 + "/impl/" + classname + "ServiceImpl.java");
@@ -401,7 +401,7 @@ public class GeneratorUtils {
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init();
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         File domainFile = new File(VO_PATH + "/src/main/java/" + context.get("voBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
                 + "/" + classname + "VO.java");
         if (!domainFile.getParentFile().exists()) {
@@ -422,7 +422,7 @@ public class GeneratorUtils {
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init();
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         File domainFile = new File(VO_PATH + "/src/main/java/" + context.get("voBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
                 + "/" + classname + "QueryVO.java");
         if (!domainFile.getParentFile().exists()) {
@@ -443,7 +443,7 @@ public class GeneratorUtils {
                 "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init();
         // 生成dao层
-        Template template = Velocity.getTemplate("com/xiehua/generator/code/" + type + ".vm");
+        Template template = Velocity.getTemplate("com/huboot/generator/code/" + type + ".vm");
         File domainFile = new File(CONTROLLER_PATH + "/src/main/java/" + context.get("controllerBasePackage").toString().replaceAll("\\.", "/") + "/" + context.get("moduleName")
                 + "/" + classname + "Controller.java");
         if (!domainFile.getParentFile().exists()) {

@@ -1,4 +1,4 @@
-package com.xiehua.generator.jpacode;
+package com.huboot.generator.jpacode;
 
 public class AbstractGenerator {
 

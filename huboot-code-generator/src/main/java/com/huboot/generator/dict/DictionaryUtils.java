@@ -1,4 +1,4 @@
-package com.xiehua.generator.dict;
+package com.huboot.generator.dict;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.velocity.Template;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class DictionaryUtils extends AbstractDict {
 
-    private static final String ENUM_BASE_PACKAGE = "com.xiehua.framework.model.enums.dict";
+    private static final String ENUM_BASE_PACKAGE = "com.huboot.model.enums.dict";
 
     public static void generator(String model, List<Integer> idList) {
 
@@ -59,7 +59,7 @@ public class DictionaryUtils extends AbstractDict {
             context.put("enumBasePackage", ENUM_BASE_PACKAGE + pmodel);
 
             Velocity.init();
-            Template template = Velocity.getTemplate("com/xiehua/generator/dict/" + "dictionary_enum"
+            Template template = Velocity.getTemplate("com/huboot/generator/dict/" + "dictionary_enum"
                     + ".vm");
             OutputStreamWriter out = null;
             try {

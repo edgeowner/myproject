@@ -1,9 +1,9 @@
-package com.xiehua.generator.jpacode.weixin;
+package com.huboot.generator.jpacode.weixin;
 
 
 
-import com.xiehua.generator.jpacode.AbstractGenerator;
-import com.xiehua.generator.jpacode.GeneratorUtils;
+import com.huboot.generator.jpacode.AbstractGenerator;
+import com.huboot.generator.jpacode.GeneratorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class MiniAppCodeTempalteMapGenerator extends AbstractGenerator {
         String serviceModule = "weixin_service";
         String tableDesc = "小程序模板使用关系表";
         try {
-            GeneratorUtils generator = new GeneratorUtils(ZYJ_ROOT);
+            GeneratorUtils generator = new GeneratorUtils("");
 
             List<String> generatorList = new ArrayList<String>();
             //generatorList.add("genertorController");// 生成ENTITY

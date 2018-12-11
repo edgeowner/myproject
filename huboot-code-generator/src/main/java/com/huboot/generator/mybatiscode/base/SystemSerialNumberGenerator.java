@@ -1,7 +1,7 @@
-package com.xiehua.generator.mybatiscode.base;
+package com.huboot.generator.mybatiscode.base;
 
-import com.xiehua.generator.mybatiscode.AbstractGenerator;
-import com.xiehua.generator.mybatiscode.GeneratorUtils;
+import com.huboot.generator.mybatiscode.AbstractGenerator;
+import com.huboot.generator.mybatiscode.GeneratorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class SystemSerialNumberGenerator extends AbstractGenerator {
         String moduleName = "system";
         String tableDesc = "系统中心-编号表";
         try {
-            GeneratorUtils generator = new GeneratorUtils(ZYJ_ROOT);
+            GeneratorUtils generator = new GeneratorUtils("");
 
             List<String> generatorList = new ArrayList<String>();
             //generatorList.add("genertorDomain");// DOMAIN

@@ -1,4 +1,6 @@
-package com.xiehua.generator.dict;
+package com.huboot.generator.dict;
+
+import com.huboot.generator.dict.DictionaryUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

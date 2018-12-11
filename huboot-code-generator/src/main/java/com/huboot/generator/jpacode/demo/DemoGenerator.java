@@ -1,9 +1,9 @@
-package com.xiehua.generator.jpacode.demo;
+package com.huboot.generator.jpacode.demo;
 
 
 
-import com.xiehua.generator.jpacode.AbstractGenerator;
-import com.xiehua.generator.jpacode.GeneratorUtils;
+import com.huboot.generator.jpacode.AbstractGenerator;
+import com.huboot.generator.jpacode.GeneratorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class DemoGenerator extends AbstractGenerator {
         String serviceModule = "web_app";
         String tableDesc = "测试";
         try {
-            GeneratorUtils generator = new GeneratorUtils(YSC_ROOT);
+            GeneratorUtils generator = new GeneratorUtils("");
 
             List<String> generatorList = new ArrayList<String>();
             //generatorList.add("genertorController");// 生成ENTITY

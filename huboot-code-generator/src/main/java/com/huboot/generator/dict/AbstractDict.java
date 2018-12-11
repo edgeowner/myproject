@@ -1,4 +1,4 @@
-package com.xiehua.generator.dict;
+package com.huboot.generator.dict;
 
 public class AbstractDict {
 
