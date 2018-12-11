@@ -1,0 +1,19 @@
+public class Constants {
+	#foreach($dict in $dicts)
+	/***
+	 * ${dict.name}
+	 *
+	 */
+	public static class ${dict.codeName}{
+		
+		#foreach($item in $dict.items)
+		
+		/***
+		 * $item.name
+		 */
+		public final Integer $item.nameEn = ${item.value};
+		#end
+	}	
+	#end	
+
+}

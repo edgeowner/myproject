@@ -1,0 +1,40 @@
+package ${voBasePackage}.${moduleName};
+
+import java.io.Serializable;
+
+import com.xiehua.framework.annotation.QueryConfig;
+import com.xiehua.framework.model.enums.system.QueryOperatorEnum;
+import com.xiehua.framework.vo.AbstractQueryVO;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+${import}
+
+//@ApiModel(value = "${tableDesc}", description = "${tableDesc}")
+public class ${classname}QueryVO extends AbstractQueryVO implements Serializable {
+	private static final long serialVersionUID = 1L;
+#foreach($row in $collist)
+#if(${row.newfield_name} != "creatorId" && ${row.newfield_name} != "modifierId" && ${row.newfield_name} != "version"
+&& ${row.newfield_name} != "createTime" && ${row.newfield_name} != "modifyTime"
+&& ${row.newfield_name} != "ordnum" && ${row.newfield_name} != "recordStatus" && ${row.newfield_name} != "generateTime")
+	@ApiModelProperty("${row.column_comment}")
+	private ${row.coltype} ${row.newfield_name} #if(${row.coltype}=="int" || ${row.coltype}=="long")=-1#end;
+#end
+#end
+#foreach($row in $collist)
+#if(${row.newfield_name} != "creatorId" && ${row.newfield_name} != "modifierId" && ${row.newfield_name} != "version"
+&& ${row.newfield_name} != "createTime" && ${row.newfield_name} != "modifyTime"
+&& ${row.newfield_name} != "ordnum" && ${row.newfield_name} != "recordStatus" && ${row.newfield_name} != "generateTime")
+
+	public void set${row.newcolumn_name}(${row.coltype} ${row.newfield_name}){
+		this.${row.newfield_name} = ${row.newfield_name};
+	}
+
+	public ${row.coltype} get${row.newcolumn_name}() {
+		return this.${row.newfield_name};
+	}
+	#end
+#end
+
+}
+

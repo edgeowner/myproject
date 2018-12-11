@@ -1,0 +1,30 @@
+package ${daoBasePackage}.${moduleName}.impl;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
+import com.xiehua.framework.dao.impl.AbstractBaseDao;
+import ${daoBasePackage}.${moduleName}.I${classname}Dao;
+import ${domainBasePackage}.${moduleName}.${classname}Domain;
+
+/**
+*${tableDesc}DaoImpl
+*/
+@Repository
+public class ${classname}DaoImpl extends AbstractBaseDao<${classname}Domain, Long> implements I${classname}Dao {
+
+    @Qualifier("sqlSessionTemplate")
+    @Autowired
+    private SqlSessionTemplate sqlSession = null;
+
+    public ${classname}DaoImpl() {
+        super(${classname}DaoImpl.class.getName());
+    }
+
+    public SqlSessionTemplate getSqlSession(){
+        return sqlSession;
+    }
+
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiehua.generator" >
+	<!-- 声明sql -->
+	<select id="getDictionarys" parameterType="List" resultType="map" >
+		SELECT `id`,`name`,`code` from zb_system_dict
+		where 1 = 1
+		<if test="list != null">
+			and `id`  IN
+			<foreach collection="list" item="key" open="(" separator="," close=")">
+				#{key}
+			</foreach>
+		</if>
+		and record_status != 0
+	</select> 
+	
+	<select id="getDictionaryItems"   resultType="map">
+		SELECT `value`,`name`,`name_en`,`seq_no` from zb_system_dict_item where dict_id = #{dictId}  and record_status != 0
+	</select>
+</mapper>

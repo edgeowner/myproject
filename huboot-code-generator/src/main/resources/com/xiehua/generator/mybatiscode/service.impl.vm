@@ -1,0 +1,21 @@
+package ${serviceBasePackage}.${moduleName}.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ${daoBasePackage}.${moduleName}.I${classname}Dao;
+import ${domainBasePackage}.${moduleName}.${classname}Domain;
+import ${serviceBasePackage}.${moduleName}.I${classname}Service;
+import com.xiehua.framework.service.impl.AbstractBaseService;
+
+/**
+ *${tableDesc}ServiceImpl
+ */
+@Service("${newclassname}ServiceImpl")
+public class ${classname}ServiceImpl extends AbstractBaseService <${classname}Domain, Long> implements I${classname}Service {
+
+    @Autowired
+    public ${classname}ServiceImpl(I${classname}Dao ${newclassname}Dao ) {
+        super(${newclassname}Dao);
+    }
+}

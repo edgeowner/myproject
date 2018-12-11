@@ -1,0 +1,53 @@
+package ${managerBasePackage}.${moduleName};
+
+import ${voBasePackage}.${moduleName}.${classname}VO;
+import com.xiehua.framework.exception.ApiException;
+import com.xiehua.framework.model.pager.Pager;
+import com.xiehua.framework.model.query.QueryCondition;
+
+import java.util.List;
+
+/**
+*${tableDesc}Manager
+*/
+public interface I${classname}Manager{
+
+    /**
+    * 创建一个对象
+    * @param vo
+    * @return
+    * @throws ApiException
+    */
+    public Long create(${classname}VO vo) throws ApiException;
+
+    /**
+    * 更新指定非空字段
+    * @param vo
+    * @throws ApiException
+    */
+    public Integer merge(${classname}VO vo) throws ApiException;
+
+
+    /**
+    * 根据主键删除一个对象
+    * @param id
+    * @throws ApiException
+    */
+    public Integer remove(Long id) throws ApiException;
+
+    /**
+    * 根据主键查询一个对象
+    * @param id
+    * @return
+    * @throws ApiException
+    */
+    public ${classname}VO find(Long id) throws ApiException;
+
+    /**
+    * 分页查询
+    * @param queryCondition
+    * @return
+    * @throws ApiException
+    */
+    public Pager<${classname}VO> findForPager(QueryCondition queryCondition)throws ApiException;
+}

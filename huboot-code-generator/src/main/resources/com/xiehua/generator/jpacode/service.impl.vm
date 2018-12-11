@@ -1,0 +1,78 @@
+package ${serviceBasePackage}.impl;
+
+import ${serviceBasePackage}.I${classname}Service;
+import BizException;
+import org.springframework.data.domain.Sort;
+import QueryCondition;
+import ${repositoryBasePackage}.I${classname}Repository;
+import ${dtoBasePackage}.${classname}DTO;
+import ${dtoBasePackage}.${classname}QueryDTO;
+import ${entityBasePackage}.${classname}Entity;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.io.IOException;
+
+/**
+ *${tableDesc}ServiceImpl
+ */
+@Service("${newclassname}ServiceImpl")
+public class ${classname}ServiceImpl implements I${classname}Service {
+
+    private Logger logger = LoggerFactory.getLogger(${classname}ServiceImpl.class);
+
+    @Autowired
+    private I${classname}Repository ${newclassname}Repository;
+
+    @Transactional
+    @Override
+    public void create(${classname}DTO dto) throws BizException {
+        ${classname}Entity entity = new ${classname}Entity();
+        BeanUtils.copyProperties(dto, entity);
+        ${newclassname}Repository.create(entity);
+    }
+
+    @Transactional
+    @Override
+    public void update(${classname}DTO dto) throws BizException {
+        ${classname}Entity entity = new ${classname}Entity();
+        BeanUtils.copyProperties(dto, entity);
+        ${newclassname}Repository.update(entity);
+    }
+
+    @Transactional
+    @Override
+    public void delete(Integer id) throws BizException {
+        try {
+            ${newclassname}Repository.remove(id);
+        } catch (IOException e) {
+            throw new BizException("数据删除错误！");
+        }
+    }
+
+    @Override
+    public ${classname}DTO find(Integer id) throws BizException {
+        ${classname}Entity entity = ${newclassname}Repository.find(id);
+        ${classname}DTO dto = new ${classname}DTO();
+        BeanUtils.copyProperties(entity, dto);
+        return dto;
+    }
+
+    @Override
+    public Page<${classname}DTO> findPage(${classname}QueryDTO queryDTO) throws BizException {
+
+        Page<${classname}Entity> page = ${newclassname}Repository.findPage(QueryCondition.from(${classname}Entity.class).where(list -> {
+
+        }).sort(Sort.by("createTime")).limit(queryDTO.getPage(), queryDTO.getSize()));
+
+        return page.map(entity -> {
+            ${classname}DTO dto = new ${classname}DTO();
+            BeanUtils.copyProperties(entity, dto);
+            return dto;
+        });
+    }
+}

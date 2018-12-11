@@ -1,0 +1,15 @@
+package ${serviceBasePackage}.${moduleName};
+
+import ${domainBasePackage}.${moduleName}.${classname}Domain;
+
+import com.xiehua.framework.service.IBaseService;
+import com.xiehua.framework.exception.ApiException;
+
+import java.util.List;
+
+/**
+ *${tableDesc}Service
+ */
+public interface I${classname}Service extends IBaseService<${classname}Domain, Long>{
+
+}

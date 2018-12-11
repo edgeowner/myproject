@@ -1,0 +1,11 @@
+package ${daoBasePackage}.${moduleName};
+
+import com.xiehua.framework.dao.IBaseDao;
+import ${domainBasePackage}.${moduleName}.${classname}Domain;
+
+/**
+*${tableDesc}Dao
+*/
+public interface I${classname}Dao extends IBaseDao<${classname}Domain,Long> {
+
+}

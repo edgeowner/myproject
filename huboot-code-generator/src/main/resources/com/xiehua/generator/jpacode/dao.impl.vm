@@ -1,0 +1,20 @@
+package ${daoBasePackage}.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
+import ${daoBasePackage}.I${classname}Dao;
+import ${repositoryBasePackage}.I${classname}Repository;
+
+/**
+*${tableDesc}DaoImpl
+*/
+@Repository("${newclassname}DaoImpl")
+public class ${classname}DaoImpl implements I${classname}Dao {
+
+    @Autowired
+    private EntityManager entityManager;
+    @Autowired
+    private I${classname}Repository repository;
+
+}

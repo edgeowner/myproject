@@ -1,0 +1,26 @@
+package ${dtoBasePackage};
+
+import java.io.Serializable;
+import lombok.Data;
+import io.swagger.annotations.ApiModelProperty;
+${import}
+
+/**
+ *${tableDesc}
+ */
+@Data
+public class ${classname}DTO implements Serializable {
+
+#foreach($row in $collist)
+#if(${row.newfield_name} != "creatorId"
+	&& ${row.newfield_name} != "modifierId"
+	&& ${row.newfield_name} != "modifyTime"
+	&& ${row.newfield_name} != "generateTime"
+	&& ${row.newfield_name} != "updateTime")
+	@ApiModelProperty("${row.column_comment}")
+	private ${row.coltype} ${row.newfield_name} #if(${row.coltype}=="int" || ${row.coltype}=="long")=-1#end;
+#end
+#end
+
+}
+

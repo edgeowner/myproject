@@ -1,0 +1,86 @@
+package ${controllerBasePackage}.${moduleName};
+
+import ${voBasePackage}.${moduleName}.${classname}VO;
+import ${voBasePackage}.${moduleName}.${classname}QueryVO;
+import ${managerBasePackage}.${moduleName}.I${classname}Manager;
+
+import com.xiehua.framework.exception.ApiException;
+import com.xiehua.framework.model.pager.Pager;
+import com.xiehua.framework.model.query.QueryCondition;
+import com.xiehua.framework.response.BaseResponse;
+import com.xiehua.framework.utils.ConditionBuilder;
+import com.xiehua.framework.utils.JsonUtils;
+import com.xiehua.framework.utils.ResponseBuilder;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/v1/${moduleName}/${newclassname}")
+@Api(value = "${tableDesc}管理REST API", description = "${tableDesc}管理REST API")
+public class ${classname}Controller {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	@Autowired
+	private I${classname}Manager ${newclassname}Manager ;
+
+	@PostMapping(value = "/")
+	@ApiOperation(value = "添加${tableDesc}", notes="添加${tableDesc}")
+	@ApiResponses(value = {@ApiResponse(code = 200, response = ${classname}VO.class, message = "OK")})
+	public BaseResponse post(@RequestBody ${classname}VO vo) throws Exception {
+		logger.debug("新增${tableDesc}，请求参数为：{}",JsonUtils.toJsonString(vo));
+		${newclassname}Manager.create(vo);
+		logger.debug("新增${tableDesc}成功！");
+		return ResponseBuilder.buildSuccessResponse(vo);
+	}
+
+
+    @PatchMapping(value = "/{id}")
+ 	@ApiOperation(value = "更新${tableDesc}信息", notes="更新${tableDesc}信息")
+ 	@ApiResponses(value = {@ApiResponse(code = 200, response = ${classname}VO.class, message = "OK")})
+    public BaseResponse update(@PathVariable("id") Long id,@RequestBody ${classname}VO vo) throws Exception {
+		logger.debug("更新${tableDesc}${tableDesc}，请求参数为：{}",JsonUtils.toJsonString(vo));
+		vo.setId(id);
+		${newclassname}Manager.merge(vo);
+		logger.debug("更新${tableDesc}成功！");
+		return ResponseBuilder.buildSuccessResponse();
+    }
+
+    @GetMapping(value = "/{id}")
+ 	@ApiOperation(value = "根据ID查询${tableDesc}信息", notes="根据ID查询${tableDesc}信息")
+ 	@ApiResponses(value = {@ApiResponse(code = 200, response = ${classname}VO.class, message = "OK")})
+    public BaseResponse get(@PathVariable("id") Long ${newclassname}Id) throws Exception {
+		logger.debug("根据ID查询${tableDesc}，请求参数为：{}",${newclassname}Id);
+		${classname}VO vo = ${newclassname}Manager.find(${newclassname}Id);
+		logger.debug("根据ID查询${tableDesc}成功！");
+		return ResponseBuilder.buildSuccessResponse(vo);
+    }
+
+    @DeleteMapping(value = "/{id}")
+ 	@ApiOperation(value = "根据ID删除${tableDesc}", notes="根据ID删除${tableDesc}")
+ 	@ApiResponses(value = {@ApiResponse(code = 200, response = ${classname}VO.class, message = "OK")})
+	public BaseResponse delete(@PathVariable("id") Long ${newclassname}Id) throws Exception {
+		logger.debug("根据ID删除${tableDesc}，请求参数为：{}",${newclassname}Id);
+		${newclassname}Manager.remove(${newclassname}Id);
+		logger.debug("根据ID删除${tableDesc}成功！");
+		return ResponseBuilder.buildSuccessResponse();
+    }
+
+	@GetMapping(value = "/pager")
+ 	@ApiOperation(value = "查询${tableDesc}列表", notes="查询${tableDesc}列表")
+ 	@ApiResponses(value = {@ApiResponse(code = 200, response = ${classname}VO.class, message = "OK")})
+    public BaseResponse findForPager(HttpServletRequest request, ${classname}QueryVO vo) throws Exception {
+		//构造查询条件
+		QueryCondition queryCondition =	ConditionBuilder.buildCondition(request, ${classname}QueryVO.class);
+		logger.debug("根据条件查询${tableDesc}，请求参数为:{}",JsonUtils.toJsonString(queryCondition));
+		Pager<${classname}VO> pager =  ${newclassname}Manager.findForPager(queryCondition);
+		return ResponseBuilder.buildPager(pager);
+    }
+}

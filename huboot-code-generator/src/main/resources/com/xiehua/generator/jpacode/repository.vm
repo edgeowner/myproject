@@ -1,0 +1,13 @@
+package ${repositoryBasePackage};
+
+import IBaseRepository;
+import org.springframework.stereotype.Repository;
+import ${entityBasePackage}.${classname}Entity;
+
+/**
+*${tableDesc}Repository
+*/
+@Repository("${newclassname}Repository")
+public interface I${classname}Repository extends IBaseRepository<${classname}Entity> {
+
+}

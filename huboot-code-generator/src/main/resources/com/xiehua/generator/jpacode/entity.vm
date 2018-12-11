@@ -1,0 +1,38 @@
+package ${entityBasePackage};
+
+import java.io.Serializable;
+
+import AbstractEntity;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import lombok.Data;
+${import}
+
+/**
+*${tableDesc}
+*/
+@Entity
+@Table(name = "${tablename}")
+@DynamicInsert
+@DynamicUpdate
+@Data
+public class ${classname}Entity extends AbstractEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+#foreach($row in $collist)
+#if(${row.newfield_name} != "creatorId"
+    && ${row.newfield_name} != "modifierId"
+    && ${row.newfield_name} != "generateTime"
+    && ${row.newfield_name} != "modifyTime"
+    && ${row.newfield_name} != "createTime"
+    && ${row.newfield_name} != "updateTime"
+    && ${row.newfield_name} != "id")
+    //${row.column_comment}
+    private ${row.coltype} ${row.newfield_name} #if(${row.coltype}=="int" || ${row.coltype}=="long")=-1#end;
+#end
+#end
+
+}
+

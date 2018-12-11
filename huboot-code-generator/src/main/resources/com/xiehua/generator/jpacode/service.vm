@@ -1,0 +1,50 @@
+package ${serviceBasePackage};
+
+import BizException;
+import ${dtoBasePackage}.${classname}DTO;
+import ${dtoBasePackage}.${classname}QueryDTO;
+import org.springframework.data.domain.Page;
+
+/**
+ *${tableDesc}Service
+ */
+public interface I${classname}Service {
+
+    /**
+    * 创建
+    * @param dto
+    * @throws BizException
+    */
+    void create(${classname}DTO dto) throws BizException;
+
+    /**
+    * 查询
+    * @param id
+    * @return
+    * @throws BizException
+    */
+    ${classname}DTO find(Integer id) throws BizException;
+
+    /**
+    * 更新
+    * @param dto
+    * @throws BizException
+    */
+    void update(${classname}DTO dto) throws BizException;
+
+    /**
+    * 删除
+    * @param id
+    * @throws BizException
+    */
+    void delete(Integer id) throws BizException;
+
+    /**
+    * 分页查询
+    * @param queryDTO
+    * @return
+    * @throws BizException
+    */
+    Page<${classname}DTO> findPage(${classname}QueryDTO queryDTO) throws BizException;
+
+}

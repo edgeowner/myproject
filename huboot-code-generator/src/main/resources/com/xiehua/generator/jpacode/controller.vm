@@ -1,0 +1,56 @@
+package ${controllerBasePackage};
+
+import ${dtoBasePackage}.${classname}DTO;
+import ${dtoBasePackage}.${classname}QueryDTO;
+import ${serviceBasePackage}.I${classname}Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "${tableDesc} API")
+@RestController
+@RequestMapping(value = "/${serviceModule}/${moduleName}/${newclassname}")
+public class ${classname}Controller {
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	private I${classname}Service ${newclassname}Service;
+
+	@PostMapping(value = "/")
+	@ApiOperation(response = void.class, value = "创建")
+	public void post(@RequestBody ${classname}DTO dto) throws Exception {
+		${newclassname}Service.create(dto);
+	}
+
+    @PatchMapping(value = "/{id}")
+	@ApiOperation(response = void.class, value = "更新")
+    public void update(@PathVariable("id") Integer id, @RequestBody ${classname}DTO dto) throws Exception {
+		dto.setId(id);
+		${newclassname}Service.update(dto);
+    }
+
+    @GetMapping(value = "/{id}")
+	@ApiOperation(response = ${classname}DTO.class, value = "查询")
+    public ${classname}DTO get(@PathVariable("id") Integer id) throws Exception {
+		${classname}DTO dto = ${newclassname}Service.find(id);
+		return dto;
+    }
+
+    @DeleteMapping(value = "/{id}")
+	@ApiOperation(response = void.class, value = "删除")
+	public void delete(@PathVariable("id") Integer id) throws Exception {
+		${newclassname}Service.delete(id);
+    }
+
+	@GetMapping(value = "/page")
+	@ApiOperation(response = ${classname}DTO.class, value = "分页")
+    public Page<${classname}DTO> findPage(${classname}QueryDTO queryDTO) throws Exception {
+		Page<${classname}DTO> page = ${newclassname}Service.findPage(queryDTO);
+    	return page;
+    }
+}

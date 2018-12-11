@@ -1,0 +1,65 @@
+package ${managerBasePackage}.${moduleName}.impl;
+
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.xiehua.framework.utils.ListCopyUtil;
+import ${managerBasePackage}.${moduleName}.I${classname}Manager;
+import ${serviceBasePackage}.${moduleName}.I${classname}Service;
+import ${voBasePackage}.${moduleName}.${classname}VO;
+import ${domainBasePackage}.${moduleName}.${classname}Domain;
+import com.xiehua.framework.exception.ApiException;
+import com.xiehua.framework.model.pager.Pager;
+import com.xiehua.framework.model.query.QueryCondition;
+import org.springframework.util.CollectionUtils;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ *${tableDesc}ManagerImpl
+ */
+@Service("${newclassname}ManagerImpl")
+public class ${classname}ManagerImpl implements I${classname}Manager {
+
+    @Autowired
+    private I${classname}Service ${newclassname}Service;
+
+    @Transactional
+    @Override
+    public Long create(${classname}VO vo) throws ApiException {
+        ${classname}Domain domain = new ${classname}Domain();
+        BeanUtils.copyProperties(vo,domain);
+        return ${newclassname}Service.create(domain);
+    }
+
+    @Transactional
+    @Override
+    public Integer merge(${classname}VO vo) throws ApiException {
+        ${classname}Domain domain = new ${classname}Domain();
+        BeanUtils.copyProperties(vo,domain);
+        return ${newclassname}Service.merge(domain);
+    }
+
+    @Transactional
+    @Override
+    public Integer remove(Long id) throws ApiException {
+        return ${newclassname}Service.remove(id);
+    }
+
+
+    @Override
+    public ${classname}VO find(Long id) throws ApiException {
+        ${classname}VO vo = new ${classname}VO();
+        ${classname}Domain domain = ${newclassname}Service.find(id);
+        BeanUtils.copyProperties(domain,vo);
+        return vo;
+    }
+
+
+    @Override
+    public Pager<${classname}VO> findForPager(QueryCondition queryCondition) throws ApiException {
+        return null;
+    }
+
+}
