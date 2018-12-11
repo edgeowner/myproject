@@ -15,8 +15,8 @@ zuul:
     max-total-connections: 1000
   routes:
     api-xiehua:
-      path: /api-xiehua/**
-      service-id: xiehua-server
+      path: /api-huboot/**
+      service-id: huboot-server
   sensitive-headers: #敏感头设置为空，否则cookie不能给前端
   ignore-security-headers: false
 
