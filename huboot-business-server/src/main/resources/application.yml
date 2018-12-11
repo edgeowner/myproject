@@ -1,0 +1,178 @@
+server:
+  port: 7500
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+    url: ${datasource.mysql.url}
+    username: ${datasource.mysql.username}
+    password: ${datasource.mysql.password}
+    driver-class-name: ${datasource.mysql.driverclass}
+    tomcat:
+      max-active: 20
+      initial-size: 5
+      max-wait: 10000
+      max-idle: 10
+      min-idle: 5
+      time-between-eviction-runs-millis: 18800
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      test-on-return: false
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none #加载hibernate的时候不要与数据库有交互（如果设置为validate话表多会导致启动很慢）
+  jackson:
+#    serialization: true
+#    #序列化JSON 字符串时忽略属性为NULL 的字段
+#    default-property-inclusion: NON_NULL
+#    #反序列化成JAVA 对象时 忽略不存在的属性或字段
+#    deserialization:
+#      FAIL_ON_UNKNOWN_PROPERTIES: false
+    date-format: yyyy-MM-dd HH:mm:ss
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      INDENT_OUTPUT: true
+  data:
+    #mongodb
+    mongodb:
+      #uri: mongodb://10.200.157.139:27017/zchz_sso_dev
+      host: ${mongodb.host}
+      port: ${mongodb.port}
+      database: ${mongodb.database}
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+  #    authentication-database: admin
+
+  #redis
+  redis:
+    database: ${redis.database}
+    host: ${redis.host}:${redis.port}
+    password: ${redis.password}
+    model: ${redis.model}
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+##alibaba
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${eureka-server.url}
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      version: V1.5
+
+# 监控 http://m.blog.csdn.net/u012702547/article/details/78224483
+# 熔断 HystrixCommandProperties  配置类
+hystrix:
+  command:
+    findTHDCMaxDayPriceForSharePrice:
+      execution:
+        timeout:
+          enabled:
+            false
+#        isolation:
+#          thread:
+#            enabled:
+#              false
+#            timeoutInMilliseconds: 60000
+    default:
+      requestLog:
+        enabled:
+          true
+      execution:
+        timeout:
+          enabled: true
+        #断路器的超时时间,断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试。
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10500
+
+
+# 均衡负载  DefaultClientConfigImpl  配置类
+ribbon:
+  #ribbon请求连接的超时时间
+  ConnectTimeout: 250
+  #请求处理的超时时间
+  ReadTimeout: 6000
+  #设置对风控小程序的服务超时时间
+xiehua-riskcontrol-server:
+  ribbon:
+    ConnectTimeout: 6000
+    ReadTimeout: 9000
+
+# JWT (跟着业务系统走)
+# JWT
+jwt:
+  header: ${jwt.header}
+  secret: ${jwt.secret}
+  expiration: ${jwt.expiration} #30分钟
+  tokenHead: ${jwt.tokenHead}
+  route:
+    authentication:
+      auth: /auth
+      register: /auth/register
+      refresh: /refresh
+  permit: [
+                {"name":"微信快捷登录","url":"/wexin_b2c_app/weixin/filter/**"},
+                {"name":"html转图片","url":"/rest_model/html_img/**"},
+              ]
+
+
+sso:
+  fromSys: weixin_app #因为目前系统未真正做拆分，故这里配weixin_app
+  bidProviderClass: com.xiehua.business.rest.weixin__app.support.SsoProviderImp #业务系统需要实现的接口
+  server:
+    host: ${host.b2c} #因为目前系统未真正做拆分，故这里配本机host
+security: #暂时未启用
+  api:
+    authentication: [{"sysName":"app","key":"abc123","roles":["ROLE_INTERNAL_USER"]},{"sysName":"weixin","key":"abc456","roles":["ROLE_OUT_USER"]}]
+    path: /api/**
+
+swagger:
+  activate: ${swagger.activate} #激活swagger的配置
+
+# 上传文件配置
+upload:
+  location: ${upload.location}
+  domain: ${upload.domain}
+  accepts:
+    img[0]: jpeg
+    img[1]: png
+    img[2]: jpg
+
+#应用配置
+xiehua:
+  sms:
+    account: ${app.sms.dahantc.account}
+    password: ${app.sms.dahantc.password}
+    account2: ${app.sms.dahantc.account2}
+    password2: ${app.sms.dahantc.password2}
+    open: ${app.sms.dahantc.open}
+  domain:
+    zkfront: ${app.domain.zkfront}
+    thdcFront: ${app.domain.thdcFront}
+    sjhtFront: ${app.domain.sjhtFront}
+    zkapi: ${app.domain.zkapi}
+  wechat:
+    open:
+      componentAppId: ${app.wechat.open.componentAppId}
+      componentSecret: ${app.wechat.open.componentSecret}
+      componentToken: ${app.wechat.open.componentToken}
+      componentAesKey: ${app.wechat.open.componentAesKey}
+  thdcWeixinUid: ${app.wechat.thdcWeixinUid}
+  boxWeixinUid: ${app.wechat.boxWeixinUid}
+  zkskWeixinUid: ${app.wechat.zkskWeixinUid}
+  miniapp:
+    lastTemplateId: ${app.wechat.miniapp.lastTemplateId}
+
+shop:
+  terms: <p>&nbsp;&nbsp;&nbsp;&nbsp;尚未设置</p>
