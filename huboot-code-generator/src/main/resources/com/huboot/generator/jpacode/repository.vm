@@ -1,6 +1,6 @@
 package ${repositoryBasePackage};
 
-import IBaseRepository;
+import com.huboot.business.common.jpa.IBaseRepository;
 import org.springframework.stereotype.Repository;
 import ${entityBasePackage}.${classname}Entity;
 

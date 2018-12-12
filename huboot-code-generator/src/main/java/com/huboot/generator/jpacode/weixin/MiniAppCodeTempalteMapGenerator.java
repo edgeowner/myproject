@@ -17,7 +17,7 @@ public class MiniAppCodeTempalteMapGenerator extends AbstractGenerator {
         String serviceModule = "weixin_service";
         String tableDesc = "小程序模板使用关系表";
         try {
-            GeneratorUtils generator = new GeneratorUtils("");
+            GeneratorUtils generator = new GeneratorUtils(HQR_ROOT);
 
             List<String> generatorList = new ArrayList<String>();
             //generatorList.add("genertorController");// 生成ENTITY

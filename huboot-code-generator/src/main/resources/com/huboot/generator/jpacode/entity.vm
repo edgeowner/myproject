@@ -2,7 +2,7 @@ package ${entityBasePackage};
 
 import java.io.Serializable;
 
-import AbstractEntity;
+import com.huboot.business.common.jpa.AbstractEntity;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
