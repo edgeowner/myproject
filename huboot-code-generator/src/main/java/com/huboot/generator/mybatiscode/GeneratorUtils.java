@@ -57,13 +57,13 @@ public class GeneratorUtils {
                           String tableDesc, String db_name, List<String> generatorList)
             throws Exception {
 
-        String daoBasePackage = "com.xiehua.business."+serviceodule+".dao";
-        String domainBasePackage = "com.xiehua.business."+serviceodule+".domain";
-        String serviceBasePackage = "com.xiehua.business."+serviceodule+".service";
-        String managerBasePackage = "com.xiehua.business."+serviceodule+".manager";
-        String dtoBasePackage = "com.xiehua.business."+serviceodule+".dto";
-        String voBasePackage = "com.xiehua.business."+serviceodule+".vo";
-        String controllerBasePackage = "com.xiehua.business."+serviceodule+".controller";
+        String daoBasePackage = "com.huboot.business."+serviceodule+".dao";
+        String domainBasePackage = "com.huboot.business."+serviceodule+".domain";
+        String serviceBasePackage = "com.huboot.business."+serviceodule+".service";
+        String managerBasePackage = "com.huboot.business."+serviceodule+".manager";
+        String dtoBasePackage = "com.huboot.business."+serviceodule+".dto";
+        String voBasePackage = "com.huboot.business."+serviceodule+".vo";
+        String controllerBasePackage = "com.huboot.business."+serviceodule+".controller";
 
         if (classname != null) {
             classname = classname.substring(0, 1).toUpperCase()

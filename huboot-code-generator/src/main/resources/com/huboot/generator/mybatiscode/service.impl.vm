@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ${daoBasePackage}.${moduleName}.I${classname}Dao;
 import ${domainBasePackage}.${moduleName}.${classname}Domain;
 import ${serviceBasePackage}.${moduleName}.I${classname}Service;
-import com.xiehua.framework.service.impl.AbstractBaseService;
+import com.huboot.business.mybatis.AbstractBaseService;
 
 /**
  *${tableDesc}ServiceImpl

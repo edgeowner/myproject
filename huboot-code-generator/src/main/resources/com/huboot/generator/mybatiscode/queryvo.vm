@@ -2,9 +2,9 @@ package ${voBasePackage}.${moduleName};
 
 import java.io.Serializable;
 
-import com.xiehua.framework.annotation.QueryConfig;
-import com.xiehua.framework.model.enums.system.QueryOperatorEnum;
-import com.xiehua.framework.vo.AbstractQueryVO;
+import com.huboot.business.mybatis.QueryConfig;
+import com.huboot.business.mybatis.QueryOperatorEnum;
+import com.huboot.business.mybatis.AbstractQueryVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

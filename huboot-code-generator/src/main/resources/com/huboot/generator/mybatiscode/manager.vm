@@ -1,9 +1,9 @@
 package ${managerBasePackage}.${moduleName};
 
 import ${voBasePackage}.${moduleName}.${classname}VO;
-import com.xiehua.framework.exception.ApiException;
-import com.xiehua.framework.model.pager.Pager;
-import com.xiehua.framework.model.query.QueryCondition;
+import com.huboot.business.mybatis.ApiException;
+import com.huboot.business.mybatis.Pager;
+import com.huboot.business.mybatis.QueryCondition;
 
 import java.util.List;
 

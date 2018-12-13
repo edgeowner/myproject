@@ -2,8 +2,8 @@ package ${serviceBasePackage}.${moduleName};
 
 import ${domainBasePackage}.${moduleName}.${classname}Domain;
 
-import com.xiehua.framework.service.IBaseService;
-import com.xiehua.framework.exception.ApiException;
+import com.huboot.business.mybatis.IBaseService;
+import com.huboot.business.mybatis.ApiException;
 
 import java.util.List;
 

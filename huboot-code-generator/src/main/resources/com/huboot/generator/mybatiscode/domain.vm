@@ -2,7 +2,7 @@ package ${domainBasePackage}.${moduleName};
 
 import java.io.Serializable;
 
-import com.xiehua.framework.domain.AbstractDomain;
+import com.huboot.business.mybatis.AbstractDomain;
 ${import}
 
 /**

@@ -1,6 +1,6 @@
 package ${daoBasePackage}.${moduleName};
 
-import com.xiehua.framework.dao.IBaseDao;
+import com.huboot.business.mybatis.IBaseDao;
 import ${domainBasePackage}.${moduleName}.${classname}Domain;
 
 /**
