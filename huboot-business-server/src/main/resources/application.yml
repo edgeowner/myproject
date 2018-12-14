@@ -176,3 +176,17 @@ xiehua:
 
 shop:
   terms: <p>&nbsp;&nbsp;&nbsp;&nbsp;尚未设置</p>
+
+pay:
+  pingpp1:
+    apiKey: ${app.pay.pingpp1.apiKey}
+    appId: ${app.pay.pingpp1.appId}
+    privateKeyFilePath: ${app.pay.pingpp1.privateKeyFilePath}
+    pubKeyPath: ${app.pay.pingpp1.pubKeyPath}
+    successUrl: ${app.pay.pingpp1.successUrl}
+  pingpp2:
+    apiKey: ${app.pay.pingpp2.apiKey}
+    appId: ${app.pay.pingpp2.appId}
+    privateKeyFilePath: ${app.pay.pingpp2.privateKeyFilePath}
+    pubKeyPath: ${app.pay.pingpp2.pubKeyPath}
+    successUrl: ${app.pay.pingpp2.successUrl}
