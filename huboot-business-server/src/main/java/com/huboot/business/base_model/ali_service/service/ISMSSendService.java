@@ -21,4 +21,6 @@ public interface ISMSSendService {
     void send(Integer system, String phones, SMSNodeEnum nodeEnum, Consumer<List<String>> consumer);
 
     void send(SMSDTO dto);
+
+    void sendValidateCode(String phone);
 }
