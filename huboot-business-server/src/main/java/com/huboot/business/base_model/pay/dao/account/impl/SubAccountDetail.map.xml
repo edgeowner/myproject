@@ -1,0 +1,1739 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huboot.business.dao.account.impl.SubAccountDetailDaoImpl">
+    <resultMap id="zac_sub_account_detail_map" type="com.huboot.business.domain.account.SubAccountDetailDomain">
+        <result property="id" column="id" javaType="java.lang.Long"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="accountId" column="account_id"/>
+        <result property="subAccountId" column="sub_account_id"/>
+        <result property="sn" column="sn"/>
+        <result property="tradeSn" column="trade_sn"/>
+        <result property="tradeSource" column="trade_source"/>
+        <result property="sign" column="sign"/>
+        <result property="originalAmount" column="original_amount"/>
+        <result property="amountPaid" column="amount_paid"/>
+        <result property="changedAmount" column="changed_amount"/>
+        <result property="paymentDate" column="payment_date"/>
+        <result property="type" column="type"/>
+        <result property="status" column="status"/>
+        <result property="remark" column="remark"/>
+        <result property="operator" column="operator"/>
+        <result property="operatorType" column="operator_type"/>
+        <result property="operatorPhone" column="operator_phone"/>
+        <result property="relaDetailId" column="rela_detail_id"/>
+        <result property="version" column="version"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="modifierId" column="modifier_id"/>
+        <result property="recordStatus" column="record_status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`
+        ,`create_time`
+        ,`modify_time`
+        ,`account_id`
+        ,`sub_account_id`
+        ,`sn`
+        ,`trade_sn`
+        ,`trade_source`
+        ,`sign`
+        ,`original_amount`
+        ,`amount_paid`
+        ,`changed_amount`
+        ,`payment_date`
+        ,`type`
+        ,`status`
+        ,`remark`
+        ,`operator`
+        ,`operator_type`
+        ,`operator_phone`
+        ,`rela_detail_id`
+        ,`version`
+        ,`creator_id`
+        ,`modifier_id`
+        ,`record_status`
+    </sql>
+
+    <sql id="Base_Mapper_Column_List">
+        `id` as `id`
+        ,`create_time` as `createTime`
+        ,`modify_time` as `modifyTime`
+        ,`account_id` as `accountId`
+        ,`sub_account_id` as `subAccountId`
+        ,`sn` as `sn`
+        ,`trade_sn` as `tradeSn`
+        ,`trade_source` as `tradeSource`
+        ,`sign` as `sign`
+        ,`original_amount` as `originalAmount`
+        ,`amount_paid` as `amountPaid`
+        ,`changed_amount` as `changedAmount`
+        ,`payment_date` as `paymentDate`
+        ,`type` as `type`
+        ,`status` as `status`
+        ,`remark` as `remark`
+        ,`operator` as `operator`
+        ,`operator_type` as `operatorType`
+        ,`operator_phone` as `operatorPhone`
+        ,`rela_detail_id` as `relaDetailId`
+        ,`version` as `version`
+        ,`creator_id` as `creatorId`
+        ,`modifier_id` as `modifierId`
+        ,`record_status` as `recordStatus`
+    </sql>
+
+    <insert id="create" parameterType="com.huboot.business.domain.account.SubAccountDetailDomain">
+        insert into zac_sub_account_detail (
+        <trim prefixOverrides=",">
+            id
+            <if test="accountId != null">
+                ,`account_id`
+            </if>
+            <if test="subAccountId != null">
+                ,`sub_account_id`
+            </if>
+            <if test="sn != null">
+                ,`sn`
+            </if>
+            <if test="tradeSn != null">
+                ,`trade_sn`
+            </if>
+            <if test="tradeSource != null">
+                ,`trade_source`
+            </if>
+            <if test="sign != null">
+                ,`sign`
+            </if>
+            <if test="originalAmount != null">
+                ,`original_amount`
+            </if>
+            <if test="amountPaid != null">
+                ,`amount_paid`
+            </if>
+            <if test="changedAmount != null">
+                ,`changed_amount`
+            </if>
+            <if test="paymentDate != null">
+                ,`payment_date`
+            </if>
+            <if test="type != null">
+                ,`type`
+            </if>
+            <if test="status != null">
+                ,`status`
+            </if>
+            <if test="remark != null">
+                ,`remark`
+            </if>
+            <if test="operator != null">
+                ,`operator`
+            </if>
+            <if test="operatorType != null">
+                ,`operator_type`
+            </if>
+            <if test="operatorPhone != null">
+                ,`operator_phone`
+            </if>
+            <if test="relaDetailId != null">
+                ,`rela_detail_id`
+            </if>
+            <if test="version != null">
+                ,`version`
+            </if>
+            <if test="creatorId != null">
+                ,`creator_id`
+            </if>
+            <if test="modifierId != null">
+                ,`modifier_id`
+            </if>
+            <if test="recordStatus != null">
+                ,`record_status`
+            </if>
+        </trim>
+        ) values (
+        <trim prefixOverrides=",">
+            #{id}
+            <if test="accountId != null">
+                , #{accountId}
+            </if>
+            <if test="subAccountId != null">
+                , #{subAccountId}
+            </if>
+            <if test="sn != null">
+                , #{sn}
+            </if>
+            <if test="tradeSn != null">
+                , #{tradeSn}
+            </if>
+            <if test="tradeSource != null">
+                , #{tradeSource}
+            </if>
+            <if test="sign != null">
+                , #{sign}
+            </if>
+            <if test="originalAmount != null">
+                , #{originalAmount}
+            </if>
+            <if test="amountPaid != null">
+                , #{amountPaid}
+            </if>
+            <if test="changedAmount != null">
+                , #{changedAmount}
+            </if>
+            <if test="paymentDate != null">
+                , #{paymentDate}
+            </if>
+            <if test="type != null">
+                , #{type}
+            </if>
+            <if test="status != null">
+                , #{status}
+            </if>
+            <if test="remark != null">
+                , #{remark}
+            </if>
+            <if test="operator != null">
+                , #{operator}
+            </if>
+            <if test="operatorType != null">
+                , #{operatorType}
+            </if>
+            <if test="operatorPhone != null">
+                , #{operatorPhone}
+            </if>
+            <if test="relaDetailId != null">
+                , #{relaDetailId}
+            </if>
+            <if test="version != null">
+                , #{version}
+            </if>
+            <if test="creatorId != null">
+                , #{creatorId}
+            </if>
+            <if test="modifierId != null">
+                , #{modifierId}
+            </if>
+            <if test="recordStatus != null">
+                , #{recordStatus}
+            </if>
+        </trim>
+        )
+    </insert>
+    <update id="update" parameterType="com.huboot.business.domain.account.SubAccountDetailDomain">
+        update zac_sub_account_detail
+        <set>
+            `account_id` =#{accountId},
+            `sub_account_id` =#{subAccountId},
+            `sn` =#{sn},
+            `trade_sn` =#{tradeSn},
+            `trade_source` =#{tradeSource},
+            `sign` =#{sign},
+            `original_amount` =#{originalAmount},
+            `amount_paid` =#{amountPaid},
+            `changed_amount` =#{changedAmount},
+            `payment_date` =#{paymentDate},
+            `type` =#{type},
+            `status` =#{status},
+            `remark` =#{remark},
+            `operator` =#{operator},
+            `operator_type` =#{operatorType},
+            `operator_phone` =#{operatorPhone},
+            `rela_detail_id` =#{relaDetailId},
+            `version` =#{version},
+            `modifier_id` =#{modifierId},
+        </set>
+        where
+        `id` = #{id}
+    </update>
+    <update id="merge" parameterType="com.huboot.business.domain.account.SubAccountDetailDomain">
+        update zac_sub_account_detail
+        <set>
+            <if test="accountId != null">
+                `account_id` = #{accountId},
+            </if>
+            <if test="subAccountId != null">
+                `sub_account_id` = #{subAccountId},
+            </if>
+            <if test="sn != null">
+                `sn` = #{sn},
+            </if>
+            <if test="tradeSn != null">
+                `trade_sn` = #{tradeSn},
+            </if>
+            <if test="tradeSource != null">
+                `trade_source` = #{tradeSource},
+            </if>
+            <if test="sign != null">
+                `sign` = #{sign},
+            </if>
+            <if test="originalAmount != null">
+                `original_amount` = #{originalAmount},
+            </if>
+            <if test="amountPaid != null">
+                `amount_paid` = #{amountPaid},
+            </if>
+            <if test="changedAmount != null">
+                `changed_amount` = #{changedAmount},
+            </if>
+            <if test="paymentDate != null">
+                `payment_date` = #{paymentDate},
+            </if>
+            <if test="type != null">
+                `type` = #{type},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="remark != null">
+                `remark` = #{remark},
+            </if>
+            <if test="operator != null">
+                `operator` = #{operator},
+            </if>
+            <if test="operatorType != null">
+                `operator_type` = #{operatorType},
+            </if>
+            <if test="operatorPhone != null">
+                `operator_phone` = #{operatorPhone},
+            </if>
+            <if test="relaDetailId != null">
+                `rela_detail_id` = #{relaDetailId},
+            </if>
+            <if test="version != null">
+                `version` = #{version},
+            </if>
+            <if test="modifierId != null">
+                `modifier_id` = #{modifierId},
+            </if>
+        </set>
+        where
+        `id` = #{id}
+    </update>
+
+    <update id="mergeByBeanProp" parameterType="map">
+        update zac_sub_account_detail
+        <set>
+            <if test="tage.accountId != null">
+                `account_id` = #{tage.accountId},
+            </if>
+            <if test="tage.subAccountId != null">
+                `sub_account_id` = #{tage.subAccountId},
+            </if>
+            <if test="tage.sn != null">
+                `sn` = #{tage.sn},
+            </if>
+            <if test="tage.tradeSn != null">
+                `trade_sn` = #{tage.tradeSn},
+            </if>
+            <if test="tage.tradeSource != null">
+                `trade_source` = #{tage.tradeSource},
+            </if>
+            <if test="tage.sign != null">
+                `sign` = #{tage.sign},
+            </if>
+            <if test="tage.originalAmount != null">
+                `original_amount` = #{tage.originalAmount},
+            </if>
+            <if test="tage.amountPaid != null">
+                `amount_paid` = #{tage.amountPaid},
+            </if>
+            <if test="tage.changedAmount != null">
+                `changed_amount` = #{tage.changedAmount},
+            </if>
+            <if test="tage.paymentDate != null">
+                `payment_date` = #{tage.paymentDate},
+            </if>
+            <if test="tage.type != null">
+                `type` = #{tage.type},
+            </if>
+            <if test="tage.status != null">
+                `status` = #{tage.status},
+            </if>
+            <if test="tage.remark != null">
+                `remark` = #{tage.remark},
+            </if>
+            <if test="tage.operator != null">
+                `operator` = #{tage.operator},
+            </if>
+            <if test="tage.operatorType != null">
+                `operator_type` = #{tage.operatorType},
+            </if>
+            <if test="tage.operatorPhone != null">
+                `operator_phone` = #{tage.operatorPhone},
+            </if>
+            <if test="tage.relaDetailId != null">
+                `rela_detail_id` = #{tage.relaDetailId},
+            </if>
+            <if test="tage.version != null">
+                `version` = #{tage.version},
+            </if>
+            <if test="tage.modifierId != null">
+                `modifier_id` = #{tage.modifierId},
+            </if>
+        </set>
+        where `record_status`!=0
+        <if test="sour.id != null">
+            and `id` = #{sour.id}
+        </if>
+        <if test="sour.accountId != null">
+            and `account_id` = #{sour.accountId}
+        </if>
+        <if test="sour.subAccountId != null">
+            and `sub_account_id` = #{sour.subAccountId}
+        </if>
+        <if test="sour.sn != null">
+            and `sn` = #{sour.sn}
+        </if>
+        <if test="sour.tradeSn != null">
+            and `trade_sn` = #{sour.tradeSn}
+        </if>
+        <if test="sour.tradeSource != null">
+            and `trade_source` = #{sour.tradeSource}
+        </if>
+        <if test="sour.sign != null">
+            and `sign` = #{sour.sign}
+        </if>
+        <if test="sour.type != null">
+            and `type` = #{sour.type}
+        </if>
+        <if test="sour.status != null">
+            and `status` = #{sour.status}
+        </if>
+        <if test="sour.remark != null">
+            and `remark` = #{sour.remark}
+        </if>
+        <if test="sour.operator != null">
+            and `operator` = #{sour.operator}
+        </if>
+        <if test="sour.operatorType != null">
+            and `operator_type` = #{sour.operatorType}
+        </if>
+        <if test="sour.operatorPhone != null">
+            and `operator_phone` = #{sour.operatorPhone}
+        </if>
+        <if test="sour.relaDetailId != null">
+            and `rela_detail_id` = #{sour.relaDetailId}
+        </if>
+        <if test="sour.version != null">
+            and `version` = #{sour.version}
+        </if>
+        <if test="sour.creatorId != null">
+            and `creator_id` = #{sour.creatorId}
+        </if>
+        <if test="sour.modifierId != null">
+            and `modifier_id` = #{sour.modifierId}
+        </if>
+        <if test="sour.recordStatus != null">
+            and `record_status` = #{sour.recordStatus}
+        </if>
+    </update>
+
+    <delete id="remove" parameterType="Long">
+        update zac_sub_account_detail
+        <set>
+            `record_status` = 0
+        </set>
+        where
+        `id` = #{id}
+    </delete>
+    <select id="findAll" resultMap="zac_sub_account_detail_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail where `record_status`!=0
+    </select>
+
+    <select id="find" resultMap="zac_sub_account_detail_map" parameterType="Long">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail
+        where
+        `id` = #{id}
+        and `record_status`!=0
+    </select>
+    <select id="findByPKList" resultMap="zac_sub_account_detail_map" parameterType="List">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail
+        where
+        `id` in
+        <foreach collection="list" item="key" open="(" separator="," close=")">
+            #{key}
+        </foreach>
+        and `record_status`!=0
+
+    </select>
+
+    <select id="findCountByBeanProp" parameterType="com.huboot.business.domain.account.SubAccountDetailDomain"
+            resultType="Integer">
+        select count(1)
+        as count
+        from zac_sub_account_detail
+        where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="accountId != null">
+            and `account_id` = #{accountId}
+        </if>
+        <if test="subAccountId != null">
+            and `sub_account_id` = #{subAccountId}
+        </if>
+        <if test="sn != null">
+            and `sn` = #{sn}
+        </if>
+        <if test="tradeSn != null">
+            and `trade_sn` = #{tradeSn}
+        </if>
+        <if test="tradeSource != null">
+            and `trade_source` = #{tradeSource}
+        </if>
+        <if test="sign != null">
+            and `sign` = #{sign}
+        </if>
+        <if test="type != null">
+            and `type` = #{type}
+        </if>
+        <if test="status != null">
+            and `status` = #{status}
+        </if>
+        <if test="remark != null">
+            and `remark` = #{remark}
+        </if>
+        <if test="operator != null">
+            and `operator` = #{operator}
+        </if>
+        <if test="operatorType != null">
+            and `operator_type` = #{operatorType}
+        </if>
+        <if test="operatorPhone != null">
+            and `operator_phone` = #{operatorPhone}
+        </if>
+        <if test="relaDetailId != null">
+            and `rela_detail_id` = #{relaDetailId}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="findByBeanProp" parameterType="com.huboot.business.domain.account.SubAccountDetailDomain"
+            resultMap="zac_sub_account_detail_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail
+        where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="accountId != null">
+            and `account_id` = #{accountId}
+        </if>
+        <if test="subAccountId != null">
+            and `sub_account_id` = #{subAccountId}
+        </if>
+        <if test="sn != null">
+            and `sn` = #{sn}
+        </if>
+        <if test="tradeSn != null">
+            and `trade_sn` = #{tradeSn}
+        </if>
+        <if test="tradeSource != null">
+            and `trade_source` = #{tradeSource}
+        </if>
+        <if test="sign != null">
+            and `sign` = #{sign}
+        </if>
+        <if test="type != null">
+            and `type` = #{type}
+        </if>
+        <if test="status != null">
+            and `status` = #{status}
+        </if>
+        <if test="remark != null">
+            and `remark` = #{remark}
+        </if>
+        <if test="operator != null">
+            and `operator` = #{operator}
+        </if>
+        <if test="operatorType != null">
+            and `operator_type` = #{operatorType}
+        </if>
+        <if test="operatorPhone != null">
+            and `operator_phone` = #{operatorPhone}
+        </if>
+        <if test="relaDetailId != null">
+            and `rela_detail_id` = #{relaDetailId}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="findByBeanPropWithOrder" parameterType="com.huboot.business.domain.account.SubAccountDetailDomain"
+            resultMap="zac_sub_account_detail_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail
+        where `record_status`!=0
+        <if test="dom.id != null">
+            and `id` = #{dom.id}
+        </if>
+        <if test="dom.accountId != null">
+            and `account_id` = #{dom.accountId}
+        </if>
+        <if test="dom.subAccountId != null">
+            and `sub_account_id` = #{dom.subAccountId}
+        </if>
+        <if test="dom.sn != null">
+            and `sn` = #{dom.sn}
+        </if>
+        <if test="dom.tradeSn != null">
+            and `trade_sn` = #{dom.tradeSn}
+        </if>
+        <if test="dom.tradeSource != null">
+            and `trade_source` = #{dom.tradeSource}
+        </if>
+        <if test="dom.sign != null">
+            and `sign` = #{dom.sign}
+        </if>
+        <if test="dom.type != null">
+            and `type` = #{dom.type}
+        </if>
+        <if test="dom.status != null">
+            and `status` = #{dom.status}
+        </if>
+        <if test="dom.remark != null">
+            and `remark` = #{dom.remark}
+        </if>
+        <if test="dom.operator != null">
+            and `operator` = #{dom.operator}
+        </if>
+        <if test="dom.operatorType != null">
+            and `operator_type` = #{dom.operatorType}
+        </if>
+        <if test="dom.operatorPhone != null">
+            and `operator_phone` = #{dom.operatorPhone}
+        </if>
+        <if test="dom.relaDetailId != null">
+            and `rela_detail_id` = #{dom.relaDetailId}
+        </if>
+        <if test="dom.version != null">
+            and `version` = #{dom.version}
+        </if>
+        <if test="dom.creatorId != null">
+            and `creator_id` = #{dom.creatorId}
+        </if>
+        <if test="dom.modifierId != null">
+            and `modifier_id` = #{dom.modifierId}
+        </if>
+        <if test="dom.recordStatus != null">
+            and `record_status` = #{dom.recordStatus}
+        </if>
+        order by
+        <foreach collection="compositeOrderList" item="item" index="index"
+                 separator=",">
+            ${item.colName} ${item.direction}
+        </foreach>
+    </select>
+
+    <select id="findForPager" parameterType="map" resultMap="zac_sub_account_detail_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="accountId != null">
+            and `account_id` = #{accountId}
+        </if>
+        <if test="subAccountId != null">
+            and `sub_account_id` = #{subAccountId}
+        </if>
+        <if test="sn != null">
+            and `sn` = #{sn}
+        </if>
+        <if test="tradeSn != null">
+            and `trade_sn` = #{tradeSn}
+        </if>
+        <if test="tradeSource != null">
+            and `trade_source` = #{tradeSource}
+        </if>
+        <if test="sign != null">
+            and `sign` = #{sign}
+        </if>
+        <if test="type != null">
+            and `type` = #{type}
+        </if>
+        <if test="status != null">
+            and `status` = #{status}
+        </if>
+        <if test="remark != null">
+            and `remark` = #{remark}
+        </if>
+        <if test="operator != null">
+            and `operator` = #{operator}
+        </if>
+        <if test="operatorType != null">
+            and `operator_type` = #{operatorType}
+        </if>
+        <if test="operatorPhone != null">
+            and `operator_phone` = #{operatorPhone}
+        </if>
+        <if test="relaDetailId != null">
+            and `rela_detail_id` = #{relaDetailId}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findForPagerCount" parameterType="com.huboot.business.domain.account.SubAccountDetailDomain"
+            resultType="Integer">
+        select count(1) as count from zac_sub_account_detail where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="accountId != null">
+            and `account_id` = #{accountId}
+        </if>
+        <if test="subAccountId != null">
+            and `sub_account_id` = #{subAccountId}
+        </if>
+        <if test="sn != null">
+            and `sn` = #{sn}
+        </if>
+        <if test="tradeSn != null">
+            and `trade_sn` = #{tradeSn}
+        </if>
+        <if test="tradeSource != null">
+            and `trade_source` = #{tradeSource}
+        </if>
+        <if test="sign != null">
+            and `sign` = #{sign}
+        </if>
+        <if test="type != null">
+            and `type` = #{type}
+        </if>
+        <if test="status != null">
+            and `status` = #{status}
+        </if>
+        <if test="remark != null">
+            and `remark` = #{remark}
+        </if>
+        <if test="operator != null">
+            and `operator` = #{operator}
+        </if>
+        <if test="operatorType != null">
+            and `operator_type` = #{operatorType}
+        </if>
+        <if test="operatorPhone != null">
+            and `operator_phone` = #{operatorPhone}
+        </if>
+        <if test="relaDetailId != null">
+            and `rela_detail_id` = #{relaDetailId}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="dyFindForPager" parameterType="map" resultMap="zac_sub_account_detail_map">
+        select
+        <include refid="Base_Column_List"/>
+        <if test="group_by != null">
+            ,count(1) as groupCount
+        </if>
+        from zac_sub_account_detail where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                `${item}`
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="dyFindForPagerCount" parameterType="map" resultType="Integer">
+        <if test="group_by != null">
+            select count(1) group_count
+            from(
+        </if>
+        select count(1) as count
+        from zac_sub_account_detail
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+            ) as group_table
+        </if>
+    </select>
+
+    <select id="dyFindForPagerMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_sub_account_detail where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findForPagerMap" parameterType="map" resultType="map">
+        select
+        <include refid="Base_Mapper_Column_List"/>
+        from zac_sub_account_detail
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findForPagerMapCount" parameterType="map" resultType="Integer">
+        select count(1) as count
+        from zac_sub_account_detail
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+    <select id="countWithGroupBy" parameterType="map" resultType="map">
+        select
+        count(1) as count
+        <if test="group_by != null">
+            <foreach collection="group_by" item="item" index="index" open=","
+                     separator=",">
+                ${item}
+            </foreach>
+        </if>
+        from zac_sub_account_detail where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index" separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findForMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_sub_account_detail where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+
+    <!-- 根据条件查询账户中心-子账户明细列表 -->
+    <select id="findByAdminQueryForPager" parameterType="map" resultMap="zac_sub_account_detail_map">
+        select distinct
+        subAccountDetail.`id`
+        ,subAccountDetail.`create_time`
+        ,subAccountDetail.`modify_time`
+        ,subAccountDetail.`account_id`
+        ,subAccountDetail.`sub_account_id`
+        ,subAccountDetail.`sn`
+        ,subAccountDetail.`trade_sn`
+        ,subAccountDetail.`trade_source`
+        ,subAccountDetail.`sign`
+        ,subAccountDetail.`original_amount`
+        ,subAccountDetail.`amount_paid`
+        ,subAccountDetail.`changed_amount`
+        ,subAccountDetail.`payment_date`
+        ,subAccountDetail.`type`
+        ,subAccountDetail.`status`
+        ,subAccountDetail.`remark`
+        ,subAccountDetail.`version`
+        ,subAccountDetail.`creator_id`
+        ,subAccountDetail.`modifier_id`
+        ,subAccountDetail.`record_status`
+        ,subAccountDetail.`operator`
+        from zac_sub_account_detail subAccountDetail
+        left join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        left join zac_sub_account_deposit subAccountDeposit on subAccountDeposit.`sub_account_id` =
+        subAccountDetail.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zac_sub_account_base subAccountBase on subAccountDeposit.`sub_account_id` =
+        subAccountBase.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zc_shop s on s.id = subAccountDeposit.seller_shop_id and s.`record_status` != 0
+        left join zb_area a on a.id = s.area_id and a.`record_status` != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+
+    <select id="findByAdminQueryForPagerCount" parameterType="map" resultType="Integer">
+        select count(1) as count
+        from zac_sub_account_detail subAccountDetail
+        left join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        left join zac_sub_account_deposit subAccountDeposit on subAccountDeposit.`sub_account_id` =
+        subAccountDetail.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zac_sub_account_base subAccountBase on subAccountDeposit.`sub_account_id` =
+        subAccountBase.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zc_shop s on s.id = subAccountDeposit.seller_shop_id and s.`record_status` != 0
+        left join zb_area a on a.id = s.area_id and a.`record_status` != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+
+    <!-- 根据条件查询账户中心-余额OR红包子账户明细列表 -->
+    <select id="findBalanceOrRedPacketAccountDetailForPager" parameterType="map" resultMap="zac_sub_account_detail_map">
+        select distinct
+        subAccountDetail.`id`
+        ,subAccountDetail.`create_time`
+        ,subAccountDetail.`modify_time`
+        ,subAccountDetail.`account_id`
+        ,subAccountDetail.`sub_account_id`
+        ,subAccountDetail.`sn`
+        ,subAccountDetail.`trade_sn`
+        ,subAccountDetail.`trade_source`
+        ,subAccountDetail.`sign`
+        ,subAccountDetail.`original_amount`
+        ,subAccountDetail.`amount_paid`
+        ,subAccountDetail.`changed_amount`
+        ,subAccountDetail.`payment_date`
+        ,subAccountDetail.`type`
+        ,subAccountDetail.`status`
+        ,subAccountDetail.`remark`
+        ,subAccountDetail.`version`
+        ,subAccountDetail.`creator_id`
+        ,subAccountDetail.`modifier_id`
+        ,subAccountDetail.`record_status`
+        ,subAccountDetail.`operator`
+        ,subAccountDetail.`operator_type`
+        ,subAccountDetail.`operator_phone`
+        from zac_sub_account_detail subAccountDetail
+        join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        join zac_sub_account_base subAccountBase on subAccountDetail.`sub_account_id` = subAccountBase.`sub_account_id`
+        and subAccountBase.`record_status` != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findBalanceOrRedPacketAccountDetailForPagerCount" parameterType="map" resultType="Integer">
+        select count(1) as count
+        from zac_sub_account_detail subAccountDetail
+        join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        join zac_sub_account_base subAccountBase on subAccountDetail.`sub_account_id` = subAccountBase.`sub_account_id`
+        and subAccountBase.`record_status` != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findBalanceOrRedPacketAccountDetailForPagerMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_sub_account_detail subAccountDetail
+        join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        join zac_sub_account_base subAccountBase on subAccountDetail.`sub_account_id` = subAccountBase.`sub_account_id`
+        and subAccountBase.`record_status` != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+
+
+    <!-- 根据条件查询账户中心-余额代付明细列表 -->
+    <select id="findBalancePayForAnotherForPager" parameterType="map" resultMap="zac_sub_account_detail_map">
+        select
+        subAccountDetail.`id`
+        ,subAccountDetail.`create_time`
+        ,subAccountDetail.`modify_time`
+        ,subAccountDetail.`account_id`
+        ,subAccountDetail.`sub_account_id`
+        ,subAccountDetail.`sn`
+        ,subAccountDetail.`trade_sn`
+        ,subAccountDetail.`trade_source`
+        ,subAccountDetail.`sign`
+        ,subAccountDetail.`original_amount`
+        ,subAccountDetail.`amount_paid`
+        ,subAccountDetail.`changed_amount`
+        ,subAccountDetail.`payment_date`
+        ,subAccountDetail.`type`
+        ,subAccountDetail.`status`
+        ,subAccountDetail.`remark`
+        ,subAccountDetail.`version`
+        ,subAccountDetail.`creator_id`
+        ,subAccountDetail.`modifier_id`
+        ,subAccountDetail.`record_status`
+        ,subAccountDetail.`operator`
+        from zac_sub_account_detail subAccountDetail
+        join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        join zac_sub_account_base subAccountBase on subAccountDetail.`sub_account_id` = subAccountBase.`sub_account_id`
+        and subAccountBase.`record_status` != 0
+        join zac_sub_account_detail applyAccountDetail on applyAccountDetail.sn = subAccountDetail.trade_sn and
+        applyAccountDetail.`record_status` != 0
+        join zac_account_base applyAccountBase on applyAccountBase.`account_id` = applyAccountDetail.`account_id` and
+        applyAccountBase.`record_status` != 0
+        left join zac_sub_account_detail_payment subAccountDetailPayment on subAccountDetailPayment.sub_account_detail_id = subAccountDetail.id and subAccountDetailPayment.`record_status` != 0
+        and subAccountDetailPayment.`status` != 4
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findBalancePayForAnotherForPagerCount" parameterType="map" resultType="Integer">
+        select count(1) as count
+        from zac_sub_account_detail subAccountDetail
+        join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        join zac_sub_account_base subAccountBase on subAccountDetail.`sub_account_id` = subAccountBase.`sub_account_id`
+        and subAccountBase.`record_status` != 0
+        join zac_sub_account_detail applyAccountDetail on applyAccountDetail.sn = subAccountDetail.trade_sn and
+        applyAccountDetail.`record_status` != 0
+        join zac_account_base applyAccountBase on applyAccountBase.`account_id` = applyAccountDetail.`account_id` and
+        applyAccountBase.`record_status` != 0
+        left join zac_sub_account_detail_payment subAccountDetailPayment on subAccountDetailPayment.sub_account_detail_id = subAccountDetail.id and subAccountDetailPayment.`record_status` != 0
+        and subAccountDetailPayment.`status` != 4
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findBalancePayForAnotherForPagerMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_sub_account_detail subAccountDetail
+        join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        join zac_sub_account_base subAccountBase on subAccountDetail.`sub_account_id` = subAccountBase.`sub_account_id`
+        and subAccountBase.`record_status` != 0
+        join zac_sub_account_detail applyAccountDetail on applyAccountDetail.sn = subAccountDetail.trade_sn and
+        applyAccountDetail.`record_status` != 0
+        join zac_account_base applyAccountBase on applyAccountBase.`account_id` = applyAccountDetail.`account_id` and
+        applyAccountBase.`record_status` != 0
+        left join zac_sub_account_detail_payment subAccountDetailPayment on subAccountDetailPayment.sub_account_detail_id = subAccountDetail.id and subAccountDetailPayment.`record_status` != 0
+        and subAccountDetailPayment.`status` != 4
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="sumRedPacketSubAccount" parameterType="map" resultType="BigDecimal">
+        select
+        sum(sad.amount_paid)
+        from zac_sub_account_detail sad
+        inner join zac_account_base ab on ab.account_id = sad.account_id and ab.record_status != 0
+        <if test="shopName != null">
+            and ab.shop_name like concat('%',#{shopName},'%')
+        </if>
+        where sad.record_status != 0 and sad.type in
+        <foreach collection="types" item="type" open="(" separator="," close=")">
+            #{type}
+        </foreach>
+    </select>
+
+    <!-- 根据条件分页查询营业收入明细列表 -->
+    <select id="findForOrderByAdminQueryForPager" parameterType="map" resultMap="zac_sub_account_detail_map">
+        SELECT
+        ad.`id`
+        ,ad.`create_time`
+        ,ad.`modify_time`
+        ,ad.`account_id`
+        ,ad.`sub_account_id`
+        ,ad.`sn`
+        ,ad.`trade_sn`
+        ,ad.`trade_source`
+        ,ad.`sign`
+        ,ad.`original_amount`
+        ,ad.`amount_paid`
+        ,ad.`changed_amount`
+        ,ad.`payment_date`
+        ,ad.`type`
+        ,ad.`status`
+        ,ad.`remark`
+        ,ad.`operator`
+        ,ad.`operator_type`
+        ,ad.`operator_phone`
+        ,ad.`version`
+        ,ad.`creator_id`
+        ,ad.`modifier_id`
+        ,ad.`record_status`
+        FROM zac_sub_account_detail ad
+        INNER JOIN zac_sub_account_base ab ON ad.sub_account_id = ab.sub_account_id AND ab.`record_status` != 0
+        INNER JOIN zc_order o ON o.sn = ad.trade_sn AND o.`record_status` != 0
+        INNER JOIN zc_shop s ON o.seller_shop_id = s.id AND s.`record_status` != 0
+        INNER JOIN zb_area a ON a.id = s.area_id AND a.`record_status` != 0
+        WHERE ad.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.colName == 'adp.platform' ">
+                        and exists (select 1 from zac_sub_account_detail_payment adp where adp.sub_account_detail_id = ad.id and adp.status = 3 and ${item.colName} ${item.dbOp} #{item.value})
+                    </when>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findForOrderByAdminQueryForPagerCount" parameterType="map" resultType="Integer">
+        select count(1) as count
+        FROM zac_sub_account_detail ad
+        INNER JOIN zac_sub_account_base ab ON ad.sub_account_id = ab.sub_account_id AND ab.`record_status` != 0
+        INNER JOIN zc_order o ON o.sn = ad.trade_sn AND o.`record_status` != 0
+        INNER JOIN zc_shop s ON o.seller_shop_id = s.id AND s.`record_status` != 0
+        INNER JOIN zb_area a ON a.id = s.area_id AND a.`record_status` != 0
+        WHERE ad.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.colName == 'adp.platform' ">
+                        and exists (select 1 from zac_sub_account_detail_payment adp where adp.sub_account_detail_id = ad.id and adp.status = 3 and ${item.colName} ${item.dbOp} #{item.value})
+                    </when>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+    <select id="findForOrderByAdminQueryForPagerMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        FROM zac_sub_account_detail ad
+        INNER JOIN zac_sub_account_base ab ON ad.sub_account_id = ab.sub_account_id AND ab.`record_status` != 0
+        INNER JOIN zc_order o ON o.sn = ad.trade_sn AND o.`record_status` != 0
+        INNER JOIN zc_shop s ON o.seller_shop_id = s.id AND s.`record_status` != 0
+        INNER JOIN zb_area a ON a.id = s.area_id AND a.`record_status` != 0
+        WHERE ad.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.colName == 'adp.platform' ">
+                        and exists (select 1 from zac_sub_account_detail_payment adp where adp.sub_account_detail_id = ad.id and adp.status = 3 and ${item.colName} ${item.dbOp} #{item.value})
+                    </when>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+    <!-- 根据条件分页查询营业收入明细列表 -->
+
+    <!--F模式押金收入明细-->
+    <select id="findForDepositByAdminQueryForPager" parameterType="map" resultMap="zac_sub_account_detail_map">
+        select
+        subAccountDetail.`id`
+        ,subAccountDetail.`create_time`
+        ,subAccountDetail.`modify_time`
+        ,subAccountDetail.`account_id`
+        ,subAccountDetail.`sub_account_id`
+        ,subAccountDetail.`sn`
+        ,subAccountDetail.`trade_sn`
+        ,subAccountDetail.`trade_source`
+        ,subAccountDetail.`sign`
+        ,subAccountDetail.`original_amount`
+        ,subAccountDetail.`amount_paid`
+        ,subAccountDetail.`changed_amount`
+        ,subAccountDetail.`payment_date`
+        ,subAccountDetail.`type`
+        ,subAccountDetail.`status`
+        ,subAccountDetail.`remark`
+        ,subAccountDetail.`version`
+        ,subAccountDetail.`creator_id`
+        ,subAccountDetail.`modifier_id`
+        ,subAccountDetail.`record_status`
+        ,subAccountDetail.`operator`
+        from zac_sub_account_detail subAccountDetail
+        left join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        left join zac_sub_account_deposit subAccountDeposit on subAccountDeposit.`sub_account_id` =
+        subAccountDetail.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zac_sub_account_base subAccountBase on subAccountDeposit.`sub_account_id` =
+        subAccountBase.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zc_shop s on s.id = subAccountDeposit.seller_shop_id and s.`record_status` != 0
+        left join zb_area a on a.id = s.area_id and a.`record_status` != 0
+        left join zac_sub_account_detail_payment zacSubAccountDetailPayment on zacSubAccountDetailPayment.sub_account_detail_id = subAccountDetail.id and zacSubAccountDetailPayment.record_status != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+
+    <select id="findForDepositByAdminQueryForPagerCount" parameterType="map" resultType="Integer">
+        select
+        count(1)
+        from zac_sub_account_detail subAccountDetail
+        left join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        left join zac_sub_account_deposit subAccountDeposit on subAccountDeposit.`sub_account_id` =
+        subAccountDetail.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zac_sub_account_base subAccountBase on subAccountDeposit.`sub_account_id` =
+        subAccountBase.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zc_shop s on s.id = subAccountDeposit.seller_shop_id and s.`record_status` != 0
+        left join zb_area a on a.id = s.area_id and a.`record_status` != 0
+        left join zac_sub_account_detail_payment zacSubAccountDetailPayment on zacSubAccountDetailPayment.sub_account_detail_id = subAccountDetail.id and zacSubAccountDetailPayment.record_status != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findForDepositByAdminQueryForPagerMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_sub_account_detail subAccountDetail
+        left join zac_account_base accountBase on accountBase.`account_id` = subAccountDetail.`account_id` and
+        accountBase.`record_status` != 0
+        left join zac_sub_account_deposit subAccountDeposit on subAccountDeposit.`sub_account_id` =
+        subAccountDetail.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zac_sub_account_base subAccountBase on subAccountDeposit.`sub_account_id` =
+        subAccountBase.`sub_account_id` and subAccountDeposit.`record_status` != 0
+        left join zc_shop s on s.id = subAccountDeposit.seller_shop_id and s.`record_status` != 0
+        left join zb_area a on a.id = s.area_id and a.`record_status` != 0
+        left join zac_sub_account_detail_payment zacSubAccountDetailPayment on zacSubAccountDetailPayment.sub_account_detail_id = subAccountDetail.id and zacSubAccountDetailPayment.record_status != 0
+        where subAccountDetail.`record_status` != 0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+
+
+    <resultMap id="sync_zk_ledger_data_map" type="com.huboot.business.dto.account.ZKLedgerSyncDTO">
+        <result property="detailId" column="id" />
+        <result property="detailSn" column="sn" />
+        <result property="orderSn" column="trade_sn" />
+        <result property="detailStatus" column="status" />
+        <result property="amount" column="amount_paid" />
+        <result property="paymentSn" column="payment_sn" />
+        <result property="paymentType" column="payment_type" />
+        <result property="paymentTime" column="payment_date" />
+        <result property="relaDetailId" column="rela_detail_id" />
+    </resultMap>
+
+    <select id="syncZKLedgerData" parameterType="map" resultMap="sync_zk_ledger_data_map">
+        select
+        detail.id,
+        detail.sn,
+        detail.trade_sn,
+        detail.`status`,
+        detail.amount_paid,
+        detail.rela_detail_id,
+        payment.id as payment_id,
+        payment.sn as payment_sn,
+        payment.type as payment_type,
+        payment.payment_date as payment_date
+        from zac_sub_account_detail detail
+        left outer join zac_sub_account_detail_payment payment on
+        <choose>
+            <when test="tradeSource == 1">
+                payment.sub_account_detail_id = detail.rela_detail_id
+            </when>
+            <when test="tradeSource == 4">
+                payment.sub_account_detail_id = detail.id
+            </when>
+        </choose>
+        and payment.`status` = 3
+        where detail.`type` in
+        <foreach collection="detaiType" item="key" open="(" separator="," close=")">
+            #{key}
+        </foreach>
+        and detail.trade_source = #{tradeSource}
+        and detail.modify_time >= #{startTime}
+        and detail.modify_time &lt; #{endTime}
+        and detail.`status` in
+        <foreach collection="detaiStatus" item="key" open="(" separator="," close=")">
+            #{key}
+        </foreach>
+    </select>
+
+</mapper>

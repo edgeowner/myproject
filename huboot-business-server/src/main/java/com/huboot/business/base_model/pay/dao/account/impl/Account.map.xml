@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huboot.business.base_model.pay.dao.account.impl.AccountDaoImpl">
+    <resultMap id="zac_account_map" type="com.huboot.business.domain.account.AccountDomain">
+        <result property="id" column="id" javaType="java.lang.Long"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="modifierId" column="modifier_id"/>
+        <result property="recordStatus" column="record_status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`
+        ,`create_time`
+        ,`modify_time`
+        ,`creator_id`
+        ,`modifier_id`
+        ,`record_status`
+    </sql>
+
+    <sql id="Base_Mapper_Column_List">
+        `id` as `id`
+        ,`create_time` as `createTime`
+        ,`modify_time` as `modifyTime`
+        ,`creator_id` as `creatorId`
+        ,`modifier_id` as `modifierId`
+        ,`record_status` as `recordStatus`
+    </sql>
+
+    <insert id="create" parameterType="com.huboot.business.domain.account.AccountDomain">
+        insert into zac_account (
+        <trim prefixOverrides=",">
+            id
+            <if test="creatorId != null">
+                ,`creator_id`
+            </if>
+            <if test="modifierId != null">
+                ,`modifier_id`
+            </if>
+            <if test="recordStatus != null">
+                ,`record_status`
+            </if>
+        </trim>
+        ) values (
+        <trim prefixOverrides=",">
+            #{id}
+            <if test="creatorId != null">
+                , #{creatorId}
+            </if>
+            <if test="modifierId != null">
+                , #{modifierId}
+            </if>
+            <if test="recordStatus != null">
+                , #{recordStatus}
+            </if>
+        </trim>
+        )
+    </insert>
+    <update id="update" parameterType="com.huboot.business.domain.account.AccountDomain">
+        update zac_account
+        <set>
+            `modifier_id` =#{modifierId},
+        </set>
+        where
+        `id` = #{id}
+    </update>
+    <update id="merge" parameterType="com.huboot.business.domain.account.AccountDomain">
+        update zac_account
+        <set>
+            <if test="modifierId != null">
+                `modifier_id` = #{modifierId},
+            </if>
+        </set>
+        where
+        `id` = #{id}
+    </update>
+
+    <update id="mergeByBeanProp" parameterType="map">
+        update zac_account
+        <set>
+            <if test="tage.modifierId != null">
+                `modifier_id` = #{tage.modifierId},
+            </if>
+        </set>
+        where `record_status`!=0
+        <if test="sour.id != null">
+            and `id` = #{sour.id}
+        </if>
+        <if test="sour.creatorId != null">
+            and `creator_id` = #{sour.creatorId}
+        </if>
+        <if test="sour.modifierId != null">
+            and `modifier_id` = #{sour.modifierId}
+        </if>
+        <if test="sour.recordStatus != null">
+            and `record_status` = #{sour.recordStatus}
+        </if>
+    </update>
+
+    <delete id="remove" parameterType="Long">
+        update zac_account
+        <set>
+            `record_status` = 0
+        </set>
+        where
+        `id` = #{id}
+    </delete>
+    <select id="findAll" resultMap="zac_account_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_account where `record_status`!=0
+    </select>
+
+    <select id="find" resultMap="zac_account_map" parameterType="Long">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_account
+        where
+        `id` = #{id}
+        and `record_status`!=0
+    </select>
+    <select id="findByPKList" resultMap="zac_account_map" parameterType="List">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_account
+        where
+        `id` in
+    <foreach collection="list" item="key" open="(" separator="," close=")">
+        #{key}
+    </foreach>
+        and `record_status`!=0
+
+    </select>
+
+    <select id="findCountByBeanProp" parameterType="com.huboot.business.domain.account.AccountDomain" resultType="Integer">
+        select count(1)
+        as count
+        from zac_account
+        where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="findByBeanProp" parameterType="com.huboot.business.domain.account.AccountDomain" resultMap="zac_account_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_account
+        where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="findByBeanPropWithOrder" parameterType="com.huboot.business.domain.account.AccountDomain" resultMap="zac_account_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_account
+        where `record_status`!=0
+        <if test="dom.id != null">
+            and `id` = #{dom.id}
+        </if>
+        <if test="dom.creatorId != null">
+            and `creator_id` = #{dom.creatorId}
+        </if>
+        <if test="dom.modifierId != null">
+            and `modifier_id` = #{dom.modifierId}
+        </if>
+        <if test="dom.recordStatus != null">
+            and `record_status` = #{dom.recordStatus}
+        </if>
+        order by
+        <foreach collection="compositeOrderList" item="item" index="index"
+                 separator=",">
+            ${item.colName} ${item.direction}
+        </foreach>
+    </select>
+
+    <select id="findForPager" parameterType="map" resultMap="zac_account_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_account where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findForPagerCount" parameterType="com.huboot.business.domain.account.AccountDomain" resultType="Integer">
+        select count(1) as count from zac_account where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="dyFindForPager" parameterType="map" resultMap="zac_account_map">
+        select
+        <include refid="Base_Column_List"/>
+        <if test="group_by != null">
+            ,count(1) as groupCount
+        </if>
+        from zac_account where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                `${item}`
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="dyFindForPagerCount" parameterType="map" resultType="Integer">
+        <if test="group_by != null">
+            select count(1) group_count
+            from(
+        </if>
+        select count(1) as count
+        from zac_account
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+            ) as group_table
+        </if>
+    </select>
+
+    <select id="dyFindForPagerMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_account where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findForPagerMap" parameterType="map" resultType="map">
+        select
+        <include refid="Base_Mapper_Column_List"/>
+        from zac_account
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findForPagerMapCount" parameterType="map" resultType="Integer">
+        select count(1) as count
+        from zac_account
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+    <select id="countWithGroupBy" parameterType="map" resultType="map">
+        select
+        count(1) as count
+        <if test="group_by != null">
+            <foreach collection="group_by" item="item" index="index" open=","
+                     separator=",">
+                ${item}
+            </foreach>
+        </if>
+        from zac_account where `recordStatus`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index" separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findForMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_account where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+</mapper>

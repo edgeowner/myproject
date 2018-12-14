@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huboot.business.dao.account.impl.SubAccountDetailPaymentPingppDaoImpl">
+    <resultMap id="zac_sub_account_detail_payment_pingpp_map" type="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain">
+        <result property="id" column="id" javaType="java.lang.Long"/>
+        <result property="createTime" column="create_time"/>
+        <result property="modifyTime" column="modify_time"/>
+        <result property="subAccountDetailPaymentId" column="sub_account_detail_payment_id"/>
+        <result property="subAccountDetailPaymentSn" column="sub_account_detail_payment_sn"/>
+        <result property="pingppId" column="pingpp_id"/>
+        <result property="pingppRequest" column="pingpp_request"/>
+        <result property="pingppResponse" column="pingpp_response"/>
+        <result property="operateType" column="operate_type"/>
+        <result property="version" column="version"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="modifierId" column="modifier_id"/>
+        <result property="recordStatus" column="record_status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`
+        ,`create_time`
+        ,`modify_time`
+        ,`sub_account_detail_payment_id`
+        ,`sub_account_detail_payment_sn`
+        ,`pingpp_id`
+        ,`pingpp_request`
+        ,`pingpp_response`
+        ,`operate_type`
+        ,`version`
+        ,`creator_id`
+        ,`modifier_id`
+        ,`record_status`
+    </sql>
+
+    <sql id="Base_Mapper_Column_List">
+        `id` as `id`
+        ,`create_time` as `createTime`
+        ,`modify_time` as `modifyTime`
+        ,`sub_account_detail_payment_id` as `subAccountDetailPaymentId`
+        ,`sub_account_detail_payment_sn` as `subAccountDetailPaymentSn`
+        ,`pingpp_id` as `pingppId`
+        ,`pingpp_request` as `pingppRequest`
+        ,`pingpp_response` as `pingppResponse`
+        ,`operate_type` as `operateType`
+        ,`version` as `version`
+        ,`creator_id` as `creatorId`
+        ,`modifier_id` as `modifierId`
+        ,`record_status` as `recordStatus`
+    </sql>
+
+    <insert id="create" parameterType="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain">
+        insert into zac_sub_account_detail_payment_pingpp (
+        <trim prefixOverrides=",">
+            id
+            <if test="subAccountDetailPaymentId != null">
+                ,`sub_account_detail_payment_id`
+            </if>
+            <if test="subAccountDetailPaymentSn != null">
+                ,`sub_account_detail_payment_sn`
+            </if>
+            <if test="pingppId != null">
+                ,`pingpp_id`
+            </if>
+            <if test="pingppRequest != null">
+                ,`pingpp_request`
+            </if>
+            <if test="pingppResponse != null">
+                ,`pingpp_response`
+            </if>
+            <if test="operateType != null">
+                ,`operate_type`
+            </if>
+            <if test="version != null">
+                ,`version`
+            </if>
+            <if test="creatorId != null">
+                ,`creator_id`
+            </if>
+            <if test="modifierId != null">
+                ,`modifier_id`
+            </if>
+            <if test="recordStatus != null">
+                ,`record_status`
+            </if>
+        </trim>
+        ) values (
+        <trim prefixOverrides=",">
+            #{id}
+            <if test="subAccountDetailPaymentId != null">
+                , #{subAccountDetailPaymentId}
+            </if>
+            <if test="subAccountDetailPaymentSn != null">
+                , #{subAccountDetailPaymentSn}
+            </if>
+            <if test="pingppId != null">
+                , #{pingppId}
+            </if>
+            <if test="pingppRequest != null">
+                , #{pingppRequest}
+            </if>
+            <if test="pingppResponse != null">
+                , #{pingppResponse}
+            </if>
+            <if test="operateType != null">
+                , #{operateType}
+            </if>
+            <if test="version != null">
+                , #{version}
+            </if>
+            <if test="creatorId != null">
+                , #{creatorId}
+            </if>
+            <if test="modifierId != null">
+                , #{modifierId}
+            </if>
+            <if test="recordStatus != null">
+                , #{recordStatus}
+            </if>
+        </trim>
+        )
+    </insert>
+    <update id="update" parameterType="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain">
+        update zac_sub_account_detail_payment_pingpp
+        <set>
+            `sub_account_detail_payment_id` =#{subAccountDetailPaymentId},
+            `sub_account_detail_payment_sn` =#{subAccountDetailPaymentSn},
+            `pingpp_id` =#{pingppId},
+            `pingpp_request` =#{pingppRequest},
+            `pingpp_response` =#{pingppResponse},
+            `operate_type` =#{operateType},
+            `version` =#{version},
+            `modifier_id` =#{modifierId},
+        </set>
+        where
+        `id` = #{id}
+    </update>
+    <update id="merge" parameterType="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain">
+        update zac_sub_account_detail_payment_pingpp
+        <set>
+            <if test="subAccountDetailPaymentId != null">
+                `sub_account_detail_payment_id` = #{subAccountDetailPaymentId},
+            </if>
+            <if test="subAccountDetailPaymentSn != null">
+                `sub_account_detail_payment_sn` = #{subAccountDetailPaymentSn},
+            </if>
+            <if test="pingppId != null">
+                `pingpp_id` = #{pingppId},
+            </if>
+            <if test="pingppRequest != null">
+                `pingpp_request` = #{pingppRequest},
+            </if>
+            <if test="pingppResponse != null">
+                `pingpp_response` = #{pingppResponse},
+            </if>
+            <if test="operateType != null">
+                `operate_type` = #{operateType},
+            </if>
+            <if test="version != null">
+                `version` = #{version},
+            </if>
+            <if test="modifierId != null">
+                `modifier_id` = #{modifierId},
+            </if>
+        </set>
+        where
+        `id` = #{id}
+    </update>
+
+    <update id="mergeByBeanProp" parameterType="map">
+        update zac_sub_account_detail_payment_pingpp
+        <set>
+            <if test="tage.subAccountDetailPaymentId != null">
+                `sub_account_detail_payment_id` = #{tage.subAccountDetailPaymentId},
+            </if>
+            <if test="tage.subAccountDetailPaymentSn != null">
+                `sub_account_detail_payment_sn` = #{tage.subAccountDetailPaymentSn},
+            </if>
+            <if test="tage.pingppId != null">
+                `pingpp_id` = #{tage.pingppId},
+            </if>
+            <if test="tage.pingppRequest != null">
+                `pingpp_request` = #{tage.pingppRequest},
+            </if>
+            <if test="tage.pingppResponse != null">
+                `pingpp_response` = #{tage.pingppResponse},
+            </if>
+            <if test="tage.operateType != null">
+                `operate_type` = #{tage.operateType},
+            </if>
+            <if test="tage.version != null">
+                `version` = #{tage.version},
+            </if>
+            <if test="tage.modifierId != null">
+                `modifier_id` = #{tage.modifierId},
+            </if>
+        </set>
+        where `record_status`!=0
+        <if test="sour.id != null">
+            and `id` = #{sour.id}
+        </if>
+        <if test="sour.subAccountDetailPaymentId != null">
+            and `sub_account_detail_payment_id` = #{sour.subAccountDetailPaymentId}
+        </if>
+        <if test="sour.subAccountDetailPaymentSn != null">
+            and `sub_account_detail_payment_sn` = #{sour.subAccountDetailPaymentSn}
+        </if>
+        <if test="sour.pingppId != null">
+            and `pingpp_id` = #{sour.pingppId}
+        </if>
+        <if test="sour.pingppRequest != null">
+            and `pingpp_request` = #{sour.pingppRequest}
+        </if>
+        <if test="sour.pingppResponse != null">
+            and `pingpp_response` = #{sour.pingppResponse}
+        </if>
+        <if test="sour.operateType != null">
+            and `operate_type` = #{sour.operateType}
+        </if>
+        <if test="sour.version != null">
+            and `version` = #{sour.version}
+        </if>
+        <if test="sour.creatorId != null">
+            and `creator_id` = #{sour.creatorId}
+        </if>
+        <if test="sour.modifierId != null">
+            and `modifier_id` = #{sour.modifierId}
+        </if>
+        <if test="sour.recordStatus != null">
+            and `record_status` = #{sour.recordStatus}
+        </if>
+    </update>
+
+    <delete id="remove" parameterType="Long">
+        update zac_sub_account_detail_payment_pingpp
+        <set>
+            `record_status` = 0
+        </set>
+        where
+        `id` = #{id}
+    </delete>
+    <select id="findAll" resultMap="zac_sub_account_detail_payment_pingpp_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail_payment_pingpp where `record_status`!=0
+    </select>
+
+    <select id="find" resultMap="zac_sub_account_detail_payment_pingpp_map" parameterType="Long">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail_payment_pingpp
+        where
+        `id` = #{id}
+        and `record_status`!=0
+    </select>
+    <select id="findByPKList" resultMap="zac_sub_account_detail_payment_pingpp_map" parameterType="List">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail_payment_pingpp
+        where
+        `id` in
+    <foreach collection="list" item="key" open="(" separator="," close=")">
+        #{key}
+    </foreach>
+        and `record_status`!=0
+
+    </select>
+
+    <select id="findCountByBeanProp" parameterType="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain" resultType="Integer">
+        select count(1)
+        as count
+        from zac_sub_account_detail_payment_pingpp
+        where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="subAccountDetailPaymentId != null">
+            and `sub_account_detail_payment_id` = #{subAccountDetailPaymentId}
+        </if>
+        <if test="subAccountDetailPaymentSn != null">
+            and `sub_account_detail_payment_sn` = #{subAccountDetailPaymentSn}
+        </if>
+        <if test="pingppId != null">
+            and `pingpp_id` = #{pingppId}
+        </if>
+        <if test="pingppRequest != null">
+            and `pingpp_request` = #{pingppRequest}
+        </if>
+        <if test="pingppResponse != null">
+            and `pingpp_response` = #{pingppResponse}
+        </if>
+        <if test="operateType != null">
+            and `operate_type` = #{operateType}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="findByBeanProp" parameterType="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain" resultMap="zac_sub_account_detail_payment_pingpp_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail_payment_pingpp
+        where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="subAccountDetailPaymentId != null">
+            and `sub_account_detail_payment_id` = #{subAccountDetailPaymentId}
+        </if>
+        <if test="subAccountDetailPaymentSn != null">
+            and `sub_account_detail_payment_sn` = #{subAccountDetailPaymentSn}
+        </if>
+        <if test="pingppId != null">
+            and `pingpp_id` = #{pingppId}
+        </if>
+        <if test="pingppRequest != null">
+            and `pingpp_request` = #{pingppRequest}
+        </if>
+        <if test="pingppResponse != null">
+            and `pingpp_response` = #{pingppResponse}
+        </if>
+        <if test="operateType != null">
+            and `operate_type` = #{operateType}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="findByBeanPropWithOrder" parameterType="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain" resultMap="zac_sub_account_detail_payment_pingpp_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail_payment_pingpp
+        where `record_status`!=0
+        <if test="dom.id != null">
+            and `id` = #{dom.id}
+        </if>
+        <if test="dom.subAccountDetailPaymentId != null">
+            and `sub_account_detail_payment_id` = #{dom.subAccountDetailPaymentId}
+        </if>
+        <if test="dom.subAccountDetailPaymentSn != null">
+            and `sub_account_detail_payment_sn` = #{dom.subAccountDetailPaymentSn}
+        </if>
+        <if test="dom.pingppId != null">
+            and `pingpp_id` = #{dom.pingppId}
+        </if>
+        <if test="dom.pingppRequest != null">
+            and `pingpp_request` = #{dom.pingppRequest}
+        </if>
+        <if test="dom.pingppResponse != null">
+            and `pingpp_response` = #{dom.pingppResponse}
+        </if>
+        <if test="dom.operateType != null">
+            and `operate_type` = #{dom.operateType}
+        </if>
+        <if test="dom.version != null">
+            and `version` = #{dom.version}
+        </if>
+        <if test="dom.creatorId != null">
+            and `creator_id` = #{dom.creatorId}
+        </if>
+        <if test="dom.modifierId != null">
+            and `modifier_id` = #{dom.modifierId}
+        </if>
+        <if test="dom.recordStatus != null">
+            and `record_status` = #{dom.recordStatus}
+        </if>
+        order by
+        <foreach collection="compositeOrderList" item="item" index="index"
+                 separator=",">
+            ${item.colName} ${item.direction}
+        </foreach>
+    </select>
+
+    <select id="findForPager" parameterType="map" resultMap="zac_sub_account_detail_payment_pingpp_map">
+        select
+        <include refid="Base_Column_List"/>
+        from zac_sub_account_detail_payment_pingpp where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="subAccountDetailPaymentId != null">
+            and `sub_account_detail_payment_id` = #{subAccountDetailPaymentId}
+        </if>
+        <if test="subAccountDetailPaymentSn != null">
+            and `sub_account_detail_payment_sn` = #{subAccountDetailPaymentSn}
+        </if>
+        <if test="pingppId != null">
+            and `pingpp_id` = #{pingppId}
+        </if>
+        <if test="pingppRequest != null">
+            and `pingpp_request` = #{pingppRequest}
+        </if>
+        <if test="pingppResponse != null">
+            and `pingpp_response` = #{pingppResponse}
+        </if>
+        <if test="operateType != null">
+            and `operate_type` = #{operateType}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findForPagerCount" parameterType="com.huboot.business.domain.account.SubAccountDetailPaymentPingppDomain" resultType="Integer">
+        select count(1) as count from zac_sub_account_detail_payment_pingpp where `record_status`!=0
+        <if test="id != null">
+            and `id` = #{id}
+        </if>
+        <if test="subAccountDetailPaymentId != null">
+            and `sub_account_detail_payment_id` = #{subAccountDetailPaymentId}
+        </if>
+        <if test="subAccountDetailPaymentSn != null">
+            and `sub_account_detail_payment_sn` = #{subAccountDetailPaymentSn}
+        </if>
+        <if test="pingppId != null">
+            and `pingpp_id` = #{pingppId}
+        </if>
+        <if test="pingppRequest != null">
+            and `pingpp_request` = #{pingppRequest}
+        </if>
+        <if test="pingppResponse != null">
+            and `pingpp_response` = #{pingppResponse}
+        </if>
+        <if test="operateType != null">
+            and `operate_type` = #{operateType}
+        </if>
+        <if test="version != null">
+            and `version` = #{version}
+        </if>
+        <if test="creatorId != null">
+            and `creator_id` = #{creatorId}
+        </if>
+        <if test="modifierId != null">
+            and `modifier_id` = #{modifierId}
+        </if>
+        <if test="recordStatus != null">
+            and `record_status` = #{recordStatus}
+        </if>
+    </select>
+
+    <select id="dyFindForPager" parameterType="map" resultMap="zac_sub_account_detail_payment_pingpp_map">
+        select
+        <include refid="Base_Column_List"/>
+        <if test="group_by != null">
+            ,count(1) as groupCount
+        </if>
+        from zac_sub_account_detail_payment_pingpp where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                `${item}`
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="dyFindForPagerCount" parameterType="map" resultType="Integer">
+        <if test="group_by != null">
+            select count(1) group_count
+            from(
+        </if>
+        select count(1) as count
+        from zac_sub_account_detail_payment_pingpp
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+            ) as group_table
+        </if>
+    </select>
+
+    <select id="dyFindForPagerMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_sub_account_detail_payment_pingpp where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findForPagerMap" parameterType="map" resultType="map">
+        select
+        <include refid="Base_Mapper_Column_List"/>
+        from zac_sub_account_detail_payment_pingpp
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index"
+                     separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+        limit #{startNum},#{pageSize}
+    </select>
+    <select id="findForPagerMapCount" parameterType="map" resultType="Integer">
+        select count(1) as count
+        from zac_sub_account_detail_payment_pingpp
+        where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+    </select>
+    <select id="countWithGroupBy" parameterType="map" resultType="map">
+        select
+        count(1) as count
+        <if test="group_by != null">
+            <foreach collection="group_by" item="item" index="index" open=","
+                     separator=",">
+                ${item}
+            </foreach>
+        </if>
+        from zac_sub_account_detail_payment_pingpp where `recordStatus`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and ${item.colName} IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and ${item.colName} like #{item.value}
+                    </when>
+                    <otherwise>
+                        and ${item.colName} ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="order != null">
+            order by
+            <foreach collection="order" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+        <if test="direction != null">
+            ${direction}
+        </if>
+        <if test="compositeOrderList != null">
+            order by
+            <foreach collection="compositeOrderList" item="item" index="index" separator=",">
+                ${item.colName} ${item.direction}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findForMap" parameterType="map" resultType="map">
+        select
+        <if test="expressionMap != null">
+            <foreach collection="expressionMap" item="item" index="index" separator=",">
+                ${item} as ${index}
+            </foreach>
+        </if>
+        from zac_sub_account_detail_payment_pingpp where `record_status`!=0
+        <if test="conditionList != null">
+            <foreach collection="conditionList" item="item" index="index">
+                <choose>
+                    <when test="item.dbOp == 'in' ">
+                        and `${item.colName}` IN
+                        <foreach collection="item.value" item="key" open="(" separator="," close=")">
+                            #{key}
+                        </foreach>
+                    </when>
+                    <when test="item.dbOp == 'like' ">
+                        and `${item.colName}` like #{item.value}
+                    </when>
+                    <otherwise>
+                        and `${item.colName}` ${item.dbOp} #{item.value}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        <if test="group_by != null">
+            group by
+            <foreach collection="group_by" item="item" index="index" separator=",">
+                ${item}
+            </foreach>
+        </if>
+    </select>
+</mapper>
