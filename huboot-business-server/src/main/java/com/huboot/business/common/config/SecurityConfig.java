@@ -3,11 +3,22 @@
 package com.huboot.business.common.config;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.huboot.business.base_model.login.sso.client.config.JwtConfig;
+import com.huboot.business.base_model.login.sso.client.dto.BaseUser;
+import com.huboot.business.base_model.login.sso.client.dto.login.RequestHeader;
+import com.huboot.business.base_model.login.sso.client.dto.login.inter.ILogin;
+import com.huboot.business.base_model.login.sso.client.interceptor.ClientInfoInterceptor;
+import com.huboot.business.base_model.login.sso.client.interceptor.RequestInfo;
 import com.huboot.business.base_model.login.sso.client.secruity.JwtAccessDeniedHandler;
 import com.huboot.business.base_model.login.sso.client.secruity.JwtAuthenticationEntryPoint;
 import com.huboot.business.base_model.login.sso.client.secruity.filter.ApiAuthenticationTokenFilter;
 import com.huboot.business.base_model.login.sso.client.secruity.filter.JwtAuthenticationTokenFilter;
+import com.huboot.business.base_model.login.sso.client.utils.RequestUtil;
+import com.huboot.business.base_model.login.sso.client.utils.WebUtil;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +40,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -59,6 +78,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtConfig jwtConfig;
+
+
+    /*登录的逻辑：
+    @PostMapping("/wexin_b2c_app/b2cUser/auth")
+    @ApiOperation(value = "登录", notes = "登录")
+    @ApiResponses(value = {@ApiResponse(code = 200, response = MiniAppUserLoginRespDTO.class, message = "OK")})
+    public MiniAppUserLoginRespDTO login(@Validated({ILogin.class}) @RequestBody LoginReqDTO loginReqDTO, HttpServletRequest request, HttpServletResponse response) throws IOException, RuntimeException, ClassNotFoundException, IllegalAccessException, UnsupportedEncodingException, JsonProcessingException {
+        RequestHeader requestHeader = RequestUtil.getJwtSignRequestHeader(request);
+        //login
+        String jwtToken = b2cUserService.login(loginReqDTO, requestHeader, false);
+        response.setHeader(tokenHeader, tokenHead + jwtToken);
+     }
+
+        登录的方法：
+        public String login(@Validated({ILogin.class}) LoginReqDTO loginReqDTO, RequestHeader requestHeader, boolean autoLogin) throws RuntimeException, ClassNotFoundException, IllegalAccessException, UnsupportedEncodingException, JsonProcessingException {
+        //get and check shop uid
+        String shopUid = (String) RequestInfo.get(ClientInfoInterceptor.SHOP_UID);
+
+        //各种校验，通过拿取user数据，角色数据，请求头，最终调用jwtTokenComponent.generateToken
+
+        //sso login
+        BaseUser user = ssoSerService.login(loginDTO);
+        //grant authorization
+        List<String> roles = new ArrayList<>();
+        roles.add(roleEntity.getRoleName());
+        roles.add(SecurityConfig.SecurityRoleEnum.role_b2c_user_common.getFullRole());
+        Map<String, String> headerMap = WebUtil.beanToMapWithString(requestHeader, false);
+        String token = jwtTokenComponent.generateToken(user, headerMap, roles, userEntity.getId() + "");
+        return token;
+
+        */
+
+
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
