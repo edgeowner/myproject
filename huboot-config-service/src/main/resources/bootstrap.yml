@@ -1,18 +1,18 @@
 spring:
   application:
-    name: hu-config-server
+    name: huboot-config-server
   cloud:
     config:
       server:
         git:
           #配置git仓库位置
-          uri:
+          uri: https://github.com/huqiren/huboot-config-repo.git
           #配置仓库路径下的相对搜索位置，可以配置多个
           search-paths: config-*
           #访问git仓库的用户名
-          username: root
+          username: huqiren
           #访问git仓库的用户密码
-          password:
+          password: hqr12251987
           force-pull: true
 #          timeout: 60
   profiles:

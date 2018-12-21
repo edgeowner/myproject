@@ -1,11 +1,11 @@
 spring:
   application:
-    name: hu-boot-server
+    name: huboot-boot-server
   cloud:
     config:
       name: huboot
       profile: ${config.profile:local}
-      label: newconfig
-      uri: ${config.uri:http:/}
+      label: master
+      uri: ${config.uri:http://127.0.0.1:7100}
   profiles:
     active: ${config.profile:local}

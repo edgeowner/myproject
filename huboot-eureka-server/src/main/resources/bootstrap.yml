@@ -1,11 +1,11 @@
 spring:
   application:
-    name: hu-eureka-server
+    name: huboot-eureka-server
   cloud:
     config:
       name: eureka
       profile: ${config.profile:local}
-      label: newconfig
-      uri: ${config.uri:http://}
+      label: master
+      uri: ${config.uri:http://127.0.0.1:7100}
   profiles:
     active: ${config.profile:local}
