@@ -1,0 +1,2 @@
+eureka:
+  url: http://eureka:eureka123@127.0.0.1:7210/eureka/

@@ -1,0 +1,4 @@
+eureka:
+  port: 7210
+  url: http://eureka:eureka123@localhost:7210/eureka/
+  selfpreservation: false
