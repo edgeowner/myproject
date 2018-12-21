@@ -1,0 +1,63 @@
+eureka-server:
+  url: http://eureka:eureka123@127.0.0.1:7210/eureka/
+datasource:
+  mysql:
+    url: jdbc:log4jdbc:mysql://10.200.157.139:3306/xiehua-dev?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: dev01
+    password: Dev2018
+    driverclass: net.sf.log4jdbc.DriverSpy
+redis:
+  database: 0
+  host: 10.200.157.139
+  port: 6379
+  password: Zchzredis2017
+  model: local
+mongodb:
+  host: 10.200.157.139
+  port: 27017
+  database: zchz_sso_dev
+  username: dev
+  password: Dev2018
+app:
+  wechat:
+    miniapp:
+      lastTemplateId: 3
+    open:
+      componentAppId: wx4371a6b844faebcd
+      componentSecret: 8bf197d8a355de123d61cbfcf9460939
+      componentToken: xiehua_token
+      componentAesKey: BAhcGqYgDX7LLYo5TgMZLuDQYwb9fuHoW4PRyX2UaUo
+    thdcWeixinUid: 4d09942a655647b88608696a852a81b1
+    boxWeixinUid: 81d69995cfb84e5bb7501e8912448774
+    zkskWeixinUid:
+  sms:
+    dahantc:
+      account: 111111
+      password: 111111
+      account2: dh31024 #租车盒子营销
+      password2: UbQKyZ8A #租车盒子营销
+      open: false
+  domain:
+    zkfront: http://dev-c.zchz.com
+    thdcFront: https://dev-wechat.zchz.com
+    sjhtFront: https://dev-b.zchz.com
+    zkapi: http://dev-gateway.zchz.com
+    thapi: http://dev-api.zchz.com
+upload:
+  location: /zchz/static/
+  domain: https://dev-wechat.zchz.com/
+
+
+#swagger开关
+swagger:
+  activate: true #激活swagger的配置
+#同行调车系统url
+host:
+  b2b: http://127.0.0.1:7300
+  b2c: http://127.0.0.1:7500
+#jwt配置
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 21600 #2小时
+  tokenHead: "Bearer "
