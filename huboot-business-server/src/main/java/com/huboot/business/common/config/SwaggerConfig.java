@@ -44,7 +44,7 @@ public class SwaggerConfig {
         }
     }
 
-    @Bean
+   /* @Bean
     public Docket framework(){
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .genericModelSubstitutes(DeferredResult.class)
@@ -55,9 +55,9 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.xiehua.framework"))
                 .build()
                 .groupName("framework")
-                .apiInfo((ApiInfo)new XHApiInfo("xiehua-framework模块相关接口", "XXX"));
+                .apiInfo((ApiInfo)new XHApiInfo("-framework模块相关接口", "XXX"));
         return docket;
-    }
+    }*/
 
     @Bean
     public Docket base_model(){
@@ -67,14 +67,14 @@ public class SwaggerConfig {
                 .forCodeGeneration(true)
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.xiehua.business.base_model"))
+                .apis(RequestHandlerSelectors.basePackage("com.huboot.business.base_model"))
                 .build()
                 .groupName("base_model")
                 .apiInfo((ApiInfo)new XHApiInfo("base_model模块相关接口", "XXX"));
         return docket;
     }
 
-    @Bean
+    /*@Bean
     public Docket business(){
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .genericModelSubstitutes(DeferredResult.class)
@@ -85,7 +85,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.xiehua.business"))
                 .build()
                 .groupName("business")
-                .apiInfo((ApiInfo)new XHApiInfo("xiehua-business模块相关接口", "XXX"));
+                .apiInfo((ApiInfo)new XHApiInfo("-business模块相关接口", "XXX"));
         return docket;
     }
 
@@ -226,6 +226,6 @@ public class SwaggerConfig {
                 .groupName("html2img")
                 .apiInfo((ApiInfo) new XHApiInfo("html2img模块相关接口", "满口蛀牙"));
         return docket;
-    }
+    }*/
 
 }

@@ -56,7 +56,7 @@ public class WeixinPublicTempalteServiceImpl implements IWeixinPublicTempalteSer
     private IWeixinPublicRepository weixinPublicRepository;
     @Autowired
     private IWeixinPublicTempalteLogRepository tempalteLogRepository;
-    @Value("${xiehua.domain.zkfront}")
+    @Value("${huboot.domain.zkfront}")
     private String zkFrontDomain;
     @Autowired
     private ThreadPoolTaskExecutor weixinTaskExecutor;

@@ -25,7 +25,7 @@ public class ZKSubscribeHandler extends AbstractHandler {
 
     @Autowired
     private IWeixinUserService weixinUserService;
-    @Value("${xiehua.domain.zkfront}")
+    @Value("${huboot.domain.zkfront}")
     private String frontDomain;
     @Autowired
     private IWeixinPublicRepository weixinPublicRepository;

@@ -18,7 +18,7 @@ mongodb:
   database:
   username:
   password:
-xiehua-server:
+huboot-server:
   host:
   port: 7500
 profile:
@@ -54,7 +54,7 @@ app:
 
 upload:
   location: //static/
-  domain: https://dev-.zchz.com/
+  domain: https://dev-..com/
 #同行调车系统url
 host:
   b2b: ht

@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Created by Administrator on 2018/1/17 0017.
  */
-@ConfigurationProperties("xiehua.sms")
+@ConfigurationProperties("huboot.sms")
 public class SMSConfigBean {
 
     // 地址

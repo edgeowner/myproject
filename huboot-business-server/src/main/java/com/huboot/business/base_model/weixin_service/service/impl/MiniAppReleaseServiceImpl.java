@@ -60,7 +60,7 @@ public class MiniAppReleaseServiceImpl implements IMiniAppReleaseService {
     private IWeixinMimiappCodeTemplateRepository codeTemplateRepository;
     @Value("${config.profile:local}")
     private String env;
-    @Value("${xiehua.zkskWeixinUid}")
+    @Value("${huboot.zkskWeixinUid}")
     private String zkskWeixinUid;
 
     /**

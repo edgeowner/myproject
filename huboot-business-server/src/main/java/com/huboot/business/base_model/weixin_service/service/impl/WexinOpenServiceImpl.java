@@ -36,7 +36,7 @@ public class WexinOpenServiceImpl implements IWeixinOpenService {
 
     private Logger logger = LoggerFactory.getLogger(WeixinPublicServiceImpl.class);
 
-    @Value("${xiehua.domain.sjhtFront}")
+    @Value("${huboot.domain.sjhtFront}")
     private String authFront;
     @Autowired
     private WxOpenService wxOpenService;

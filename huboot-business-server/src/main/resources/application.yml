@@ -104,10 +104,7 @@ ribbon:
   #请求处理的超时时间
   ReadTimeout: 6000
   #设置对风控小程序的服务超时时间
-xiehua-riskcontrol-server:
-  ribbon:
-    ConnectTimeout: 6000
-    ReadTimeout: 9000
+
 
 # JWT (跟着业务系统走)
 # JWT
@@ -150,7 +147,7 @@ upload:
     img[2]: jpg
 
 #应用配置
-xiehua:
+huboot:
   sms:
     account: ${app.sms.dahantc.account}
     password: ${app.sms.dahantc.password}

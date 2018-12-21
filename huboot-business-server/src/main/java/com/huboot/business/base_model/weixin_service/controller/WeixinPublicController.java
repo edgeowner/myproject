@@ -34,7 +34,7 @@ public class WeixinPublicController {
 	private IWeixinPublicService weixinPublicService;
 	@Autowired
 	private IWeixinUserService weixinUserService;
-	@Value("${xiehua.thdcWeixinUid}")
+	@Value("${huboot.thdcWeixinUid}")
 	private String thdcWeixinUid;
 	@Autowired
 	private IWeixinUserStatisticService weixinUserStatisticService;

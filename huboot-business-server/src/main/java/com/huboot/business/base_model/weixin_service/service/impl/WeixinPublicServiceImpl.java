@@ -61,9 +61,9 @@ public class WeixinPublicServiceImpl implements IWeixinPublicService {
     private IWeixinPublicRepository weixinPublicRepository;
     @Autowired
     private WechatMpFactory wechatMpFactory;
-    @Value("${xiehua.domain.zkfront}")
+    @Value("${huboot.domain.zkfront}")
     private String frontDomain;
-    @Value("${xiehua.domain.thdcFront}")
+    @Value("${huboot.domain.thdcFront}")
     private String thdcFront;
     @Autowired
     private WxOpenService wxOpenService;

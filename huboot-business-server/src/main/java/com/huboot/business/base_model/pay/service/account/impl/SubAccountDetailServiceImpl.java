@@ -47,8 +47,8 @@ public class SubAccountDetailServiceImpl extends AbstractBaseService<SubAccountD
     private ISubAccountService subAccountService;
     @Autowired
     private IAccountBaseService accountBaseService;
-    @Autowired
-    private TaskExecutor taskExecutor;
+    /*@Autowired
+    private TaskExecutor taskExecutor;*/
     @Autowired
     private ISubAccountDetailPaymentService subAccountDetailPaymentService;
     @Autowired

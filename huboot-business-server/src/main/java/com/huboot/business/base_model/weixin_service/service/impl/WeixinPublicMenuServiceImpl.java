@@ -47,7 +47,7 @@ public class WeixinPublicMenuServiceImpl implements IWeixinPublicMenuService {
     private IWeixinPublicMenuRepository weixinPublicMenuRepository;
     @Autowired
     private WechatMpFactory wechatMpFactory;
-    @Value("${xiehua.domain.zkfront}")
+    @Value("${huboot.domain.zkfront}")
     private String frontDomain;
     @Autowired
     private ObjectMapper objectMapper;

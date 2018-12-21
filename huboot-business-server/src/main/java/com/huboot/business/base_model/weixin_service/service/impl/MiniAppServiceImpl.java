@@ -57,15 +57,15 @@ public class MiniAppServiceImpl implements IMiniAppService {
     private IWeixinPublicRepository publicRepository;
     @Autowired
     private IWeixinMimiappTemplateMapRepository templateMapRepository;
-    @Value("${xiehua.domain.zkfront}")
+    @Value("${huboot.domain.zkfront}")
     private String zkfront;
-    @Value("${xiehua.domain.thdcFront}")
+    @Value("${huboot.domain.thdcFront}")
     private String thdcFront;
-    @Value("${xiehua.domain.zkapi}")
+    @Value("${huboot.domain.zkapi}")
     private String zkapi;
     @Value("${config.profile:local}")
     private String env;
-    @Value("${xiehua.zkskWeixinUid}")
+    @Value("${huboot.zkskWeixinUid}")
     private String zkskWeixinUid;
     @Autowired
     private MiniAppFactory miniAppFactory;

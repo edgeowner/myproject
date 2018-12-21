@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * @author <a href="https://github.com/007gzs">007</a>
  */
-@ConfigurationProperties(prefix = "xiehua.wechat.open")
+@ConfigurationProperties(prefix = "huboot.wechat.open")
 public class WechatOpenProperties {
     /**
      * 设置微信三方平台的appid
