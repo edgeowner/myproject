@@ -161,6 +161,7 @@ public class SMSSendServiceImpl implements ISMSSendService, InitializingBean {
 
         //保存验证码
         String code = Tools.getRandom(6);
+        //ValueOperations,spring的redis的类，这里set一下，就已经保存到redis去了
         valueOperations.set(String.format(SMSConstant.SMS_REGISTER_CODE, phone), code, Constant.SEC_TENMINUTE, TimeUnit.SECONDS);
         Map<String, String> contentMap = new HashMap<>();
         contentMap.put("code", code);

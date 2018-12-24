@@ -65,6 +65,19 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Value("${jwt.expiration}")
     private Long expiration;
 
+
+    /**
+     * 登录时的设置token:
+     *
+     * 1.user是登录校验（密码校验啊）通过后的用户信息；
+     * 2.headermap是请求头信息，RequestHeader requestHeader = RequestUtil.getJwtSignRequestHeader(request);
+     * Map<String, String> headerMap = WebUtil.beanToMapWithString(requestHeader, false);来获得；
+     * 3.roles是角色数组
+     * 4.userEntity.getId() + ""可以自己定义的一些业务字符串
+     * String token = jwtTokenComponent.generateToken(user, headerMap, roles, userEntity.getId() + "");
+     *
+     */
+
 //    @Autowired
 //    private JwtConfig jwtConfig;
 

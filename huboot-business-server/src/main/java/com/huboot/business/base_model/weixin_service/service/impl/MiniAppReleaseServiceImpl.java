@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -525,7 +526,20 @@ public class MiniAppReleaseServiceImpl implements IMiniAppReleaseService {
     }
 
 
+    /**
+     * 记住刷新缓存永远是删除缓存，删除缓存的设置在UserCacheAdvice里面,通过注解@AFTER来触发执行UserCachePutData
+     * 里面有注解@CachePut，这个注解是像cache写数据，清除缓存是用@CacheEvict
+     * 一般像用户信息数据这些都存在缓存里面，因为经常用到。
+     *
+     * @param miniappUid
+     * @param templateId
+     * @param status
+     * @param page
+     * @param size
+     * @return
+     */
     @Override
+    @Cacheable(value = "queueName-releaseLog", keyGenerator = "keyGenerator", cacheManager = "redisCacheManager", unless = "#result == null")
     public Pager<ReleaseLogPagerDTO> releaseLogPager(String miniappUid, Integer templateId, Integer status, Integer page, Integer size) {
         Page<WeixinMimiappTemplateMapEntity> ep = templateMapRepository.findPage(QueryCondition.from(WeixinMimiappTemplateMapEntity.class).where(list -> {
             if(!StringUtils.isEmpty(miniappUid)) {
