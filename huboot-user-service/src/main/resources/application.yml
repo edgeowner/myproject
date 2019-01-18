@@ -1,0 +1,125 @@
+server:
+  port: ${outcfg.server.port:9020}
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  application:
+    name: user-service
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  datasource:
+    url: ${datasource.mysql.url}
+    username: ${datasource.mysql.username}
+    password: ${datasource.mysql.password}
+    driver-class-name: ${datasource.mysql.driverclass}
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    database: ${redis.database}
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: 1
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+
+
+# 使用信号量隔离方式
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 10000
+          semaphore:
+            maxConcurrentRequests: 50
+
+# 均衡负载  DefaultClientConfigImpl  配置类
+ribbon:
+  ConnectTimeout: 1000 #ribbon请求连接的超时时间
+  ReadTimeout: 6000 #请求处理的超时时间
+
+# 开启服务降级
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+
+#打开actuator的所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+swagger:
+  enabled: true
+  base-package: com.xiehua.user
+  base-path: /**
+  exclude-path: /error, /ops/**
+  global-operation-parameters[0]:
+    name: Authorization
+    description: 鉴权
+    model-ref: String
+    parameter_type: header
+    required: false
+  global-operation-parameters[1]:
+      name: Shop-Sn
+      description: 访问店铺的shop-sn,目前支持：司机小程序
+      model-ref: String
+      parameter_type: header
+      required: false
+  docket:
+    actuator:
+      title: actuator模块
+      base-package: org.springframework.boot.actuate.endpoint.web.servlet
+    user:
+      title: 用户
+      base-package: com.xiehua.user.user
+    auth:
+      title: 登陆
+      base-package: com.xiehua.user.auth
+    organization:
+      title: 组织架构
+      base-package: com.xiehua.user.organization
+    weixin:
+      title: 微信
+      base-package: com.xiehua.user.weixin
+    role:
+      title: 角色
+      base-package: com.xiehua.user.role
+    area:
+      title: 区域
+      base-package: com.xiehua.user.area
+    inner:
+      title: 内部
+      base-package: com.xiehua.share.common.system

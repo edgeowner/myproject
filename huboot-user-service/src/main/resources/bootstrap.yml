@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    config:
+      name: user
+      profile: ${outcfg.profile:local}
+      label: microservice
+      uri: ${outcfg.configuri:http://10.200.157.139:7100}
+  profiles:
+    active: ${outcfg.profile:local}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${eureka.defaultZone}
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      version: v1.0.0
