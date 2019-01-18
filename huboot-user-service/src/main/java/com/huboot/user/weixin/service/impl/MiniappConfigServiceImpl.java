@@ -1,16 +1,16 @@
 package com.huboot.user.weixin.service.impl;
 
-import com.xiehua.commons.component.exception.BizException;
-import com.xiehua.commons.utils.JsonUtil;
-import com.xiehua.share.user_service.enums.MiniappConfigTypeEnum;
-import com.xiehua.user.common.config.RefreshValue;
-import com.xiehua.user.common.constant.WeixinConstant;
-import com.xiehua.user.weixin.dto.admin.MiniappSettingDTO;
-import com.xiehua.user.weixin.entity.MiniappConfigEntity;
-import com.xiehua.user.weixin.entity.MiniappEntity;
-import com.xiehua.user.weixin.repository.IMiniappConfigRepository;
-import com.xiehua.user.weixin.repository.IMiniappRepository;
-import com.xiehua.user.weixin.service.IMiniappConfigService;
+import com.huboot.commons.component.exception.BizException;
+import com.huboot.commons.utils.JsonUtil;
+import com.huboot.share.user_service.enums.MiniappConfigTypeEnum;
+import com.huboot.user.common.config.RefreshValue;
+import com.huboot.user.common.constant.WeixinConstant;
+import com.huboot.user.weixin.dto.admin.MiniappSettingDTO;
+import com.huboot.user.weixin.entity.MiniappConfigEntity;
+import com.huboot.user.weixin.entity.MiniappEntity;
+import com.huboot.user.weixin.repository.IMiniappConfigRepository;
+import com.huboot.user.weixin.repository.IMiniappRepository;
+import com.huboot.user.weixin.service.IMiniappConfigService;
 import me.chanjar.weixin.open.api.WxOpenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

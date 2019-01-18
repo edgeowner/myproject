@@ -1,5 +1,5 @@
 server:
-  port: ${outcfg.server.port:9020}
+  port: 9020
   tomcat:
     uri-encoding: UTF-8
 spring:
@@ -104,22 +104,22 @@ swagger:
       base-package: org.springframework.boot.actuate.endpoint.web.servlet
     user:
       title: 用户
-      base-package: com.xiehua.user.user
+      base-package: com.huboot.user.user
     auth:
       title: 登陆
-      base-package: com.xiehua.user.auth
+      base-package: com.huboot.user.auth
     organization:
       title: 组织架构
-      base-package: com.xiehua.user.organization
+      base-package: com.huboot.user.organization
     weixin:
       title: 微信
-      base-package: com.xiehua.user.weixin
+      base-package: com.huboot.user.weixin
     role:
       title: 角色
-      base-package: com.xiehua.user.role
+      base-package: com.huboot.user.role
     area:
       title: 区域
-      base-package: com.xiehua.user.area
+      base-package: com.huboot.user.area
     inner:
       title: 内部
-      base-package: com.xiehua.share.common.system
+      base-package: com.huboot.share.common.system

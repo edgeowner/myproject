@@ -2,28 +2,25 @@ package com.huboot.user.weixin.service.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaQrcodeService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
-import com.xiehua.commons.component.exception.BizException;
-import com.xiehua.commons.jpa.QueryCondition;
-import com.xiehua.commons.page.ShowPageImpl;
-import com.xiehua.commons.utils.AppAssert;
-import com.xiehua.share.common.enums.YesOrNoEnum;
-import com.xiehua.share.file_service.api.dto.FileDetailResDTO;
-import com.xiehua.share.file_service.api.dto.MockMultipartFileDTO;
-import com.xiehua.share.file_service.api.feign.FileFeignClient;
-import com.xiehua.share.user_service.api.dto.QrcodeCreateDTO;
-import com.xiehua.share.user_service.api.dto.UserAuthResultDTO;
-import com.xiehua.share.user_service.data.ShopCacheData;
-import com.xiehua.share.user_service.enums.WeixinAuthStatusEnum;
-import com.xiehua.user.common.constant.WeixinConstant;
-import com.xiehua.user.weixin.dto.admin.MiniappPagerDTO;
-import com.xiehua.user.weixin.dto.wycshop.MiniappInfoDTO;
-import com.xiehua.user.weixin.entity.MiniappEntity;
-import com.xiehua.user.weixin.repository.IMiniappRepository;
-import com.xiehua.user.weixin.service.IMiniappConfigService;
-import com.xiehua.user.weixin.service.IMiniappService;
-import com.xiehua.user.weixin.service.IMiniappUserService;
-import com.xiehua.user.weixin.service.IWeixinShopRelationService;
-import com.xiehua.user.weixin.support.WxServiceFactory;
+import com.huboot.commons.component.exception.BizException;
+import com.huboot.commons.jpa.QueryCondition;
+import com.huboot.commons.page.ShowPageImpl;
+import com.huboot.commons.utils.AppAssert;
+import com.huboot.share.common.enums.YesOrNoEnum;
+import com.huboot.share.user_service.api.dto.QrcodeCreateDTO;
+import com.huboot.share.user_service.api.dto.UserAuthResultDTO;
+import com.huboot.share.user_service.data.ShopCacheData;
+import com.huboot.share.user_service.enums.WeixinAuthStatusEnum;
+import com.huboot.user.common.constant.WeixinConstant;
+import com.huboot.user.weixin.dto.admin.MiniappPagerDTO;
+import com.huboot.user.weixin.dto.wycshop.MiniappInfoDTO;
+import com.huboot.user.weixin.entity.MiniappEntity;
+import com.huboot.user.weixin.repository.IMiniappRepository;
+import com.huboot.user.weixin.service.IMiniappConfigService;
+import com.huboot.user.weixin.service.IMiniappService;
+import com.huboot.user.weixin.service.IMiniappUserService;
+import com.huboot.user.weixin.service.IWeixinShopRelationService;
+import com.huboot.user.weixin.support.WxServiceFactory;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.open.api.WxOpenService;
 import me.chanjar.weixin.open.bean.auth.WxOpenAuthorizationInfo;
@@ -58,8 +55,8 @@ public class MiniappServiceImpl implements IMiniappService {
     private IMiniappUserService userService;
     @Autowired
     private IMiniappConfigService configService;
-    @Autowired
-    private FileFeignClient fileFeignClient;
+   /* @Autowired
+    private FileFeignClient fileFeignClient;*/
     @Autowired
     private WxServiceFactory wxServiceFactory;
     @Autowired
@@ -210,8 +207,8 @@ public class MiniappServiceImpl implements IMiniappService {
         WxMaQrcodeService qrcodeService = wxServiceFactory.getWxMaService(appId).getQrcodeService();
         try {
             File file = qrcodeService.createWxaCodeUnlimit(createDTO.getScene(), createDTO.getPage());
-            FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
-            return resDTO.getFullPath();
+            /*FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));*/
+            return "";
         } catch (Exception e) {
             logger.warn("小程序生成二维码异常, appId={}", appId, e);
             throw new BizException("小程序生成二维码异常");
@@ -228,8 +225,8 @@ public class MiniappServiceImpl implements IMiniappService {
         WxMaQrcodeService qrcodeService = wxServiceFactory.getWxMaService(appId).getQrcodeService();
         try {
             File file = qrcodeService.createQrcode(createDTO.getPage());
-            FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
-            return resDTO.getFullPath();
+            /*FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));*/
+            return "";
         } catch (Exception e) {
             logger.warn("小程序生成二维码异常, appId={}", appId, e);
             throw new BizException("小程序生成二维码异常");
@@ -268,8 +265,8 @@ public class MiniappServiceImpl implements IMiniappService {
             WxMaQrcodeService qrcodeService =  wxOpenService.getWxOpenComponentService().getWxMaServiceByAppid(miniappId).getQrcodeService();
             try {
                 File file = qrcodeService.createQrcode(QrcodeCreateDTO.INDEX);
-                FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
-                miniappEntity.setQrcodeImg(resDTO.getFullPath());
+                /*FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
+                miniappEntity.setQrcodeImg(resDTO.getFullPath());*/
                 miniappRepository.modify(miniappEntity);
             } catch (Exception e) {
                 logger.warn("小程序生成二维码异常, appId={}", miniappId, e);

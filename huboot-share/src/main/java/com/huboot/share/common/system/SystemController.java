@@ -22,8 +22,8 @@ public class SystemController {
 
 	@Autowired
 	private FeignClientEncodingProperties properties;
-	@Autowired
-	private Decoder decoder;
+	/*@Autowired
+	private Decoder decoder;*/
 	@Autowired
 	private Client client;
 	@Value("${spring.application.name:none}")
@@ -38,7 +38,7 @@ public class SystemController {
 	private IConnectionController getConnectionController(String serviceName) {
 		return Feign.builder()
 				.client(client)
-				.decoder(decoder)
+				//.decoder(decoder)
 				.errorDecoder(new ResultErrorDecoder())
 				.requestInterceptor(new RequestHeaderInterceptor(properties))
 				.target(IConnectionController.class, "http://" + serviceName.toUpperCase());

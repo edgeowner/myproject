@@ -15,21 +15,19 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class UserFallback implements UserFeignClient {
+public class UserFallback{
 
-    @Override
+
     public List<Long> getUserIdListCondition(@RequestParam("name") String name, @RequestParam("phone") String phone, @RequestParam("idcard") String idcard) {
         log.error("UserFeignClient.getUserIdListCondition Fallback ，参数={},{},{}", name, phone, idcard);
         return new ArrayList<>();
     }
 
-    @Override
     public UserDetailInfo getUserDetailInfo(@PathVariable("userId") Long userId) {
         log.error("UserFeignClient.getUserDetailInfo Fallback ，参数={}", userId);
         return null;
     }
 
-    @Override
     public List<String> getUserRole(Long userId) {
         log.error("UserFeignClient.getUserRole Fallback ，参数={}", userId);
         return new ArrayList<>();

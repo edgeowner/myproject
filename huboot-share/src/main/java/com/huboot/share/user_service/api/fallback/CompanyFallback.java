@@ -11,14 +11,12 @@ import java.util.List;
  * Created by Administrator on 2018/9/10 0010.
  */
 @Component
-public class CompanyFallback implements CompanyFeignClient {
+public class CompanyFallback{
 
-    @Override
     public CompanyDetailInfo get(@PathVariable("id") Long id) {
         return null;
     }
 
-    @Override
     public List<CompanyDetailInfo> all() {
         return null;
     }

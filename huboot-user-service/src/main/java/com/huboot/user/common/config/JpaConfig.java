@@ -13,6 +13,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         repositoryFactoryBeanClass = DefaultBaseRepositoryFactoryBean.class,
         basePackages = "com.huboot.**.repository"
 )
-@EntityScan(basePackages = {"com.xiehua.commons.jpa", "com.xiehua.**.entity"})
+@EntityScan(basePackages = {"com.huboot.commons.jpa", "com.huboot.**.entity"})
 public class JpaConfig {
 }

@@ -1,15 +1,15 @@
 package com.huboot.user.weixin.service.impl;
 
-import com.xiehua.commons.component.exception.BizException;
-import com.xiehua.commons.jpa.QueryCondition;
-import com.xiehua.commons.page.ShowPageImpl;
-import com.xiehua.share.common.enums.YesOrNoEnum;
-import com.xiehua.user.weixin.dto.MiniappCodeTemplateDTO;
-import com.xiehua.user.weixin.dto.admin.MiniappCodeTemplateCreateDTO;
-import com.xiehua.user.weixin.dto.admin.WxCodeTemplate;
-import com.xiehua.user.weixin.entity.MiniappCodeTemplateEntity;
-import com.xiehua.user.weixin.repository.IMiniappCodeTemplateRepository;
-import com.xiehua.user.weixin.service.IMiniappCodeTemplateService;
+import com.huboot.commons.component.exception.BizException;
+import com.huboot.commons.jpa.QueryCondition;
+import com.huboot.commons.page.ShowPageImpl;
+import com.huboot.share.common.enums.YesOrNoEnum;
+import com.huboot.user.weixin.dto.MiniappCodeTemplateDTO;
+import com.huboot.user.weixin.dto.admin.MiniappCodeTemplateCreateDTO;
+import com.huboot.user.weixin.dto.admin.WxCodeTemplate;
+import com.huboot.user.weixin.entity.MiniappCodeTemplateEntity;
+import com.huboot.user.weixin.repository.IMiniappCodeTemplateRepository;
+import com.huboot.user.weixin.service.IMiniappCodeTemplateService;
 import me.chanjar.weixin.open.api.WxOpenService;
 import me.chanjar.weixin.open.bean.WxOpenMaCodeTemplate;
 import org.slf4j.Logger;

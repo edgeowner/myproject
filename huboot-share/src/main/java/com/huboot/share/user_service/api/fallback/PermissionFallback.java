@@ -11,8 +11,8 @@ import java.util.List;
  * Created by Administrator on 2018/9/7 0007.
  */
 @Component
-public class PermissionFallback implements PermissionFeignClient {
-    @Override
+public class PermissionFallback {
+
     public List<PermissionResourcesDTO> getRolePermission(Long roleId) {
         return new ArrayList<>();
     }

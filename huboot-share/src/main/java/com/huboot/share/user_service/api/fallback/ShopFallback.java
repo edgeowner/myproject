@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Created by Administrator on 2018/9/10 0010.
  */
 @Component
-public class ShopFallback implements ShopFeignClient {
+public class ShopFallback{
 
-    @Override
     public ShopDetaiInfo get(@PathVariable("id") Long id) {
         return null;
     }
 
-    @Override
     public ShopDetaiInfo findByShopSn(@PathVariable("shopSn") String shopSn) {
         return null;
     }

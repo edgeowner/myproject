@@ -1,23 +1,20 @@
 package com.huboot.user.weixin.service.impl;
 
-import com.xiehua.commons.component.exception.BizException;
-import com.xiehua.commons.jpa.QueryCondition;
-import com.xiehua.commons.page.ShowPageImpl;
-import com.xiehua.commons.utils.AppAssert;
-import com.xiehua.share.file_service.api.dto.FileDetailResDTO;
-import com.xiehua.share.file_service.api.dto.MockMultipartFileDTO;
-import com.xiehua.share.file_service.api.feign.FileFeignClient;
-import com.xiehua.share.user_service.api.dto.QrcodeCreateDTO;
-import com.xiehua.share.user_service.data.ShopCacheData;
-import com.xiehua.share.user_service.data.UserCacheData;
-import com.xiehua.share.user_service.enums.WeixinAuthStatusEnum;
-import com.xiehua.user.weixin.dto.WxmpUpdateDTO;
-import com.xiehua.user.weixin.dto.admin.WxmpPagerDTO;
-import com.xiehua.user.weixin.dto.wycshop.WxmpappInfoDTO;
-import com.xiehua.user.weixin.entity.WxmpEntity;
-import com.xiehua.user.weixin.repository.IWxmpRepository;
-import com.xiehua.user.weixin.service.IWeixinShopRelationService;
-import com.xiehua.user.weixin.service.IWxmpService;
+import com.huboot.commons.component.exception.BizException;
+import com.huboot.commons.jpa.QueryCondition;
+import com.huboot.commons.page.ShowPageImpl;
+import com.huboot.commons.utils.AppAssert;
+import com.huboot.share.user_service.api.dto.QrcodeCreateDTO;
+import com.huboot.share.user_service.data.ShopCacheData;
+import com.huboot.share.user_service.data.UserCacheData;
+import com.huboot.share.user_service.enums.WeixinAuthStatusEnum;
+import com.huboot.user.weixin.dto.WxmpUpdateDTO;
+import com.huboot.user.weixin.dto.admin.WxmpPagerDTO;
+import com.huboot.user.weixin.dto.wycshop.WxmpappInfoDTO;
+import com.huboot.user.weixin.entity.WxmpEntity;
+import com.huboot.user.weixin.repository.IWxmpRepository;
+import com.huboot.user.weixin.service.IWeixinShopRelationService;
+import com.huboot.user.weixin.service.IWxmpService;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpQrcodeService;
 import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
@@ -52,8 +49,8 @@ public class WxmpServiceImpl implements IWxmpService {
     private WxOpenService wxOpenService;
     @Autowired
     private ShopCacheData shopCacheData;
-    @Autowired
-    private FileFeignClient fileFeignClient;
+    /*@Autowired
+    private FileFeignClient fileFeignClient;*/
     @Autowired
     private UserCacheData userCacheData;
 
@@ -173,8 +170,8 @@ public class WxmpServiceImpl implements IWxmpService {
             WxMpQrcodeService qrcodeService =  wxOpenService.getWxOpenComponentService().getWxMpServiceByAppid(appId).getQrcodeService();
             WxMpQrCodeTicket ticket = qrcodeService.qrCodeCreateLastTicket(createDTO.getScene());
             File file = qrcodeService.qrCodePicture(ticket);
-            FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
-            return resDTO.getFullPath();
+            //FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
+            return "";
         } catch (Exception e) {
             logger.error("公众号生成二维码异常:", e);
             throw new BizException("公众号生成二维码异常，请检查");
@@ -191,8 +188,8 @@ public class WxmpServiceImpl implements IWxmpService {
                 WxMpQrcodeService qrcodeService =  wxOpenService.getWxOpenComponentService().getWxMpServiceByAppid(wxmpappId).getQrcodeService();
                 WxMpQrCodeTicket ticket = qrcodeService.qrCodeCreateLastTicket("init");
                 File file = qrcodeService.qrCodePicture(ticket);
-                FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
-                wxmpEntity.setQrcodeImg(resDTO.getFullPath());
+                /*FileDetailResDTO resDTO = fileFeignClient.create(new MockMultipartFileDTO("file", file));
+                wxmpEntity.setQrcodeImg(resDTO.getFullPath());*/
                 wxmpRepository.modify(wxmpEntity);
             } catch (Exception e) {
                 logger.error("公众号生成二维码异常:", e);

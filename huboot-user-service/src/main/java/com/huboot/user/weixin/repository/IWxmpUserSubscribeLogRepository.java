@@ -1,7 +1,7 @@
 package com.huboot.user.weixin.repository;
 
-import com.xiehua.commons.jpa.IBaseRepository;
-import com.xiehua.user.weixin.entity.WxmpUserSubscribeLogEntity;
+import com.huboot.commons.jpa.IBaseRepository;
+import com.huboot.user.weixin.entity.WxmpUserSubscribeLogEntity;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -1,16 +1,17 @@
 package com.huboot.user.weixin.service.impl;
 
-import com.xiehua.commons.component.exception.BizException;
-import com.xiehua.commons.component.redis.RedisHelper;
-import com.xiehua.commons.utils.EmojiFilterUtil;
-import com.xiehua.share.common.constant.RedisQueueName;
-import com.xiehua.user.weixin.entity.WxmpEntity;
-import com.xiehua.user.weixin.entity.WxmpUserEntity;
-import com.xiehua.user.weixin.entity.WxmpUserSubscribeLogEntity;
-import com.xiehua.user.weixin.repository.IWxmpRepository;
-import com.xiehua.user.weixin.repository.IWxmpUserRepository;
-import com.xiehua.user.weixin.repository.IWxmpUserSubscribeLogRepository;
-import com.xiehua.user.weixin.service.IWxmpUserService;
+
+import com.huboot.commons.component.exception.BizException;
+import com.huboot.commons.component.redis.RedisHelper;
+import com.huboot.commons.utils.EmojiFilterUtil;
+import com.huboot.share.common.constant.RedisQueueName;
+import com.huboot.user.weixin.entity.WxmpEntity;
+import com.huboot.user.weixin.entity.WxmpUserEntity;
+import com.huboot.user.weixin.entity.WxmpUserSubscribeLogEntity;
+import com.huboot.user.weixin.repository.IWxmpRepository;
+import com.huboot.user.weixin.repository.IWxmpUserRepository;
+import com.huboot.user.weixin.repository.IWxmpUserSubscribeLogRepository;
+import com.huboot.user.weixin.service.IWxmpUserService;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.WxMpUserService;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
