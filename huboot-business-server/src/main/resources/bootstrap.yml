@@ -1,6 +1,6 @@
 spring:
   application:
-    name: huboot-boot-server
+    name: huboot-server
   cloud:
     config:
       name: huboot
