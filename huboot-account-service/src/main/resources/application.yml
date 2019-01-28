@@ -1,0 +1,178 @@
+server:
+  port: ${outcfg.server.port:9030}
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  datasource:
+    url: ${datasource.mysql.url}
+    username: ${datasource.mysql.username}
+    password: ${datasource.mysql.password}
+    driver-class-name: ${datasource.mysql.driverclass}
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    database: ${redis.database}
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: 1
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+
+#打开actuator的所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# 使用信号量隔离方式
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 10000
+          semaphore:
+            maxConcurrentRequests: 50
+
+# 均衡负载  DefaultClientConfigImpl  配置类
+ribbon:
+  ConnectTimeout: 1000 #ribbon请求连接的超时时间
+  ReadTimeout: 6000 #请求处理的超时时间
+
+# 开启服务降级
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+
+swagger:
+  global-operation-parameters[0]:
+    name: Authorization
+    description: 鉴权
+    model-ref: String
+    parameter_type: header
+    required: false
+  docket:
+    actuator:
+      title: actuator模块
+      base-package: org.springframework.boot.actuate.endpoint.web.servlet
+    account:
+      title: account模块
+      base-package: com.xiehua.account.account
+    payment:
+      title: payment模块
+      base-package: com.xiehua.account.payment
+    inner:
+      title: 内部
+      base-package: com.xiehua.share.common.system
+
+
+
+
+#易宝支付
+yibao:
+  #父商编
+  parentMerchantNo: 10026763786
+  #子商编
+  merchantNo: 10026893602
+  host: https://open.yeepay.com/yop-center
+  #钉钉机器人
+  notify:
+    robot: https://oapi.dingtalk.com/robot/send?access_token=d5a5b61663e38681b81794f8a3a66ccb710137e989c809a9441e0a32fa7c253b
+    url:
+      #入网回调
+      reg: ${yibao.notify.url.reg}
+      #支付回调
+      pay: ${yibao.notify.url.pay}
+      #退款回调
+      refund: ${yibao.notify.url.refund}
+      #分账回调
+      divide: ${yibao.notify.url.divide}
+  service:
+    #YOP订单创建URI
+    tradeOrderURI: /rest/v1.0/sys/trade/order
+    #YOP单笔订单查询URI
+    orderQueryURI: /rest/v1.0/sys/trade/orderquery
+    #YOP单笔退款URI
+    refundURI: /rest/v1.0/sys/trade/refund
+    #YOP单笔退款查询URI
+    refundQueryURI: /rest/v1.0/sys/trade/refundquery
+    #YOP批量订单查询URI
+    multiOrderQueryURI: /rest/v1.0/sys/trade/multiorderquery
+    #YOP订单关闭URI
+    orderCloseURI: /rest/v1.0/sys/trade/orderclose
+    #YOP结算历史查询接口URI
+    settlementsqueryURI: /rest/v1.0/sys/trade/settlementsquery
+    #YOP余额查询接口URI
+    balancequeryURI: /rest/v1.0/sys/merchant/balancequery
+    #YOP获取子商户密钥URI
+    hmackeyqueryURI: /rest/v1.0/sys/merchant/hmackeyquery
+    #资金确认
+    tradefullsettleURI: /rest/v1.0/sys/trade/fullsettle
+    #分账
+    tradedivideURI: /rest/v1.0/sys/trade/divide
+    #分账查询
+    tradedividequeryURI: /rest/v1.0/sys/trade/dividequery
+
+    #个人注册
+    personURI: /rest/v1.0/sys/merchant/personreginfoadd
+    #个体工商户注册
+    individualURI: /rest/v1.0/sys/merchant/individualreginfoadd
+    #企业注册
+    enterpriseURI: /rest/v1.0/sys/merchant/enterprisereginfoadd
+    #商户产品协议获取
+    agreeinfoqueryURI: /rest/v1.0/sys/merchant/agreeinfoquery
+    #获取支行信息接口
+    bankBranchInfoURI: /rest/v1.0/sys/merchant/bankBranchInfo
+    #商户入网状态查询
+    regstatusqueryURI: /rest/v1.0/sys/merchant/regstatusquery
+    #文件上传
+    uploadURI: /rest/v1.0/file/upload
+    #授权短验重发
+    sendauthorizenumURI: /rest/v1.0/sys/merchant/sendauthorizenum
+    #修改子商户需下发短验
+    sendmersmsnotifyURI: /rest/v1.0/merchantService/mer-out-invoke/send-mer-sms-notify
+    #子商户费率修改
+    merproductfeeupdateforo2oURI: /rest/v1.0/merchantService/mer-product-info/mer-product-fee-update-for-o2o
+    #子商户修改银行卡
+    mersettleinfoupdateforo2oURI: /rest/v1.0/merchantService/mer-settle/mer-settle-info-update-for-o2o
+    #授权码确认接口
+    receiveauthorizenumURI: /rest/v1.0/sys/merchant/receiveauthorizenum
+    #授权页面接口获取地址
+    authorizeurlqueryURI: /rest/v1.0/sys/merchant/authorizeurlquery
+    #拼接url
+    #标准收银台
+    CASHIER: https://cash.yeepay.com/cashier/std
+    #API收银台
+    APICASHIER: /rest/v1.0/nccashierapi/api/pay
