@@ -1,0 +1,58 @@
+server:
+  port: 9060
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  application:
+    name: file-service
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  datasource:
+    url: ${datasource.mysql.url}
+    username: ${datasource.mysql.username}
+    password: ${datasource.mysql.password}
+    driver-class-name: ${datasource.mysql.driverclass}
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+
+swagger:
+  enabled: true
+  base-package: com.xiehua.file
+  base-path: /**
+  exclude-path: /error, /ops/**
+  global-operation-parameters[0]:
+    name: Authorization
+    description: 鉴权
+    model-ref: String
+    parameter_type: header
+    required: false
+  docket:
+    file:
+      title: 文件
+      base-package: com.xiehua.file.file
+aliyun:
+  oss:
+    access-key-id: LTAIN3NH2YJio1hI
+    access-key-secret: eBn4H9MCS4MEAevUe38KOTrpxEXU7G
+    bucket-name: ${aliyun.oss.bucket-name}
+    #w外部/内部网络访问，内部访问免流量
+    out-endpoint: ${aliyun.oss.out-endpoint}
+    internal-endpoint: ${aliyun.oss.internal-endpoint}
+file:
+  domain:
+    domain: ${file.domain}
