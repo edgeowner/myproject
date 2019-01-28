@@ -60,6 +60,21 @@ public class DateUtil {
         return applyTime;
     }
 
+
+    /**
+     * 时间添加分钟
+     *
+     * @param date
+     * @param second
+     * @return
+     */
+    public static Date getDateAddSecond(Date date, int second) {
+        Calendar ca = new GregorianCalendar();
+        ca.setTime(date);
+        ca.add(Calendar.SECOND, second);
+        return ca.getTime();
+    }
+
     /**
      * 格式化
      *
