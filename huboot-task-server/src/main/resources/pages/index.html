@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>任务中心</title>
+    <script th:src="@{/js/jquery-3.3.1.min.js}" charset="utf-8"></script>
+    <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"  media="all">
+</head>
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header">
+        <div class="layui-logo">携华任务管理中心</div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item layui-this"><a th:href="@{/admin/index}">定时任务</a></li>
+            <li class="layui-nav-item"><a th:href="@{/admin/delay}">延时任务</a></li>
+            <li class="layui-nav-item"><a th:href="@{/admin/log}">任务日志</a></li>
+            <li class="layui-nav-item"><a th:href="@{/admin/blackip}">IP黑名单</a></li>
+        </ul>
+    </div>
+
+    <div style="margin: 20px;">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">服务名称：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="serviceName" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">类名：</label>
+                    <div class="layui-input-inline" style="width: 300px;">
+                        <input type="text" name="className"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit="" lay-filter="query">查询</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <table class="layui-table" lay-data="{url:'/admin/get_secheduled_task_pager', page:true, id:'secheduleTable'}" lay-filter="nimahai">
+            <thead>
+            <tr>
+                <th lay-data="{field:'id'}">任务ID</th>
+                <th lay-data="{field:'serviceName'}">服务名称</th>
+                <th lay-data="{field:'className'}">类名</th>
+                <th lay-data="{field:'cron'}">表达式</th>
+                <th lay-data="{field:'status', templet: '#statusTpl'}">任务状态</th>
+                <th lay-data="{field:'activation', templet: '#activationTpl'}">激活状态</th>
+                <th lay-data="{field:'nextExceTime'}">下次执行时间</th>
+                <th lay-data="{field:'exceCount'}">执行次数</th>
+                <th lay-data="{toolbar:'#ztoolbar'}">操作</th>
+            </tr>
+            </thead>
+        </table>
+        <script type="text/html" id="ztoolbar">
+            <a class="layui-btn layui-btn-xs" lay-event="open">开启</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="close">关闭</a>
+            <a class="layui-btn layui-btn-xs" lay-event="piece">任务分片</a>
+        </script>
+        <script type="text/html" id="statusTpl">
+            {{#  if(d.status === 'disable'){ }}
+            <span style="color: #f5441e;">{{ d.status }}</span>
+            {{#  } else { }}
+            <span style="color: #1eab22;">{{ d.status }}</span>
+            {{#  } }}
+        </script>
+        <script type="text/html" id="activationTpl">
+            {{#  if(d.activation === 'invalid'){ }}
+            <span style="color: #f5441e;">{{ d.activation }}</span>
+            {{#  } else { }}
+            <span style="color: #1eab22;">{{ d.activation }}</span>
+            {{#  } }}
+        </script>
+    </div>
+
+</div>
+
+</body>
+
+<div id="piece_div" style="width: 700px; display: none;">
+    <br>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 100px;">参数：</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="parameters" id="parameters" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-input-inline" style="width: 100px;">
+                <button class="layui-btn" onclick="addPiece()">添加分片</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin: 20px;">
+        <table class="layui-table" lay-data="{url:'/admin/get_secheduled_piece_list', page: false, id:'pieceTable'}" lay-filter="shit" >
+            <thead>
+            <tr>
+                <th lay-data="{field:'id', width: 250}">分片ID</th>
+                <th lay-data="{field:'parameters', width: 300}">参数</th>
+                <th lay-data="{toolbar:'#piecebar', width: 100}">操作</th>
+            </tr>
+            </thead>
+        </table>
+        <script type="text/html" id="piecebar">
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delpiece">删除</a>
+        </script>
+    </div>
+</div>
+
+<script>
+var pieceTaskId;
+var element;
+var table;
+var form;
+layui.use(['element', 'table', 'form'], function(){
+    element= layui.element;
+    table = layui.table;
+    form = layui.form;
+
+    //监听工具条
+    table.on('tool(nimahai)', function(obj){
+        var data = obj.data;
+        if(data.activation != 'activate') {
+            layer.msg('任务不是激活状态，不能操作');
+            return;
+        }
+        if(obj.event === 'open'){
+            if(data.status == 'enable') {
+                layer.msg('已是开启状态');
+            } else {
+                layer.confirm('确定要开启任务吗？', function(index){
+                    layer.close(index);
+                    setSutats(data.id, 'enable');
+                });
+            }
+        } else if(obj.event === 'close'){
+            if(data.status == 'disable') {
+                layer.msg('已是关闭状态');
+            } else {
+                layer.confirm('确定要关闭任务吗？', function(index){
+                    layer.close(index);
+                    setSutats(data.id, 'disable');
+                });
+            }
+        } else if(obj.event === 'piece'){
+            layer.open({
+                type: 1,
+                title: '任务分片',
+                content: $('#piece_div'),
+                area: 'auto',
+                maxWidth: 700,
+                success: function(layero, index){
+                    pieceTaskId = data.id;
+                    table.reload('pieceTable', {
+                        where: {
+                            taskId: data.id
+                        }
+                    });
+                },
+                cancel: function (layero, index) {
+                    pieceTaskId = null;
+                }
+            });
+        }
+    });
+
+    //监听工具条
+    table.on('tool(shit)', function(obj){
+        var data = obj.data;
+        if(obj.event === 'delpiece'){
+            layer.confirm('确定要删除分片吗？', function(index){
+                layer.close(index);
+                delPiece(data.id);
+            });
+
+        }
+    });
+
+    //监听提交
+    form.on('submit(query)', function(data){
+        table.reload('secheduleTable', {
+            where: {
+                serviceName: data.field.serviceName,
+                className: data.field.className
+            },page: {
+                curr: 1
+            }
+        });
+        return false;
+    });
+
+});
+
+function setSutats(taskId, status) {
+    var index = layer.load(1);
+    $.ajax({
+        type: "POST",
+        url: "/admin/update_secheduled_status/" + taskId + "/" + status,
+        contentType: "application/json",
+        data: JSON.stringify({}),
+        success: function(response) {
+            table.reload('secheduleTable');
+            layer.close(index);
+        },
+        error: function(response) {
+            layer.msg('设置失败');
+            table.reload('secheduleTable');
+            layer.close(index);
+        }
+    });
+}
+
+function addPiece() {
+    var parameters = $('#parameters').val();
+    if(parameters == null || parameters == '') {
+        return;
+    }
+    var index = layer.load(1);
+    $.ajax({
+        type: "POST",
+        url: "/admin/add_secheduled_piece",
+        contentType: "application/json",
+        data: JSON.stringify({
+            taskId: pieceTaskId,
+            parameters: parameters
+        }),
+        success: function(response) {
+            layer.close(index);
+            $('#parameters').val("");
+            table.reload('pieceTable');
+        },
+        error: function(response) {
+            layer.close(index);
+            layer.msg('添加失败');
+        }
+    });
+}
+
+function delPiece(pieceId) {
+    var index = layer.load(1);
+    $.ajax({
+        type: "POST",
+        url: "/admin/del_secheduled_piece/" + pieceId,
+        contentType: "application/json",
+        data: JSON.stringify({}),
+        success: function(response) {
+            layer.close(index);
+            table.reload('pieceTable');
+        },
+        error: function(response) {
+            layer.close(index);
+            layer.msg('删除失败');
+        }
+    });
+}
+
+</script>
+
+</html>

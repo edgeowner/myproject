@@ -1,0 +1,38 @@
+server:
+  port: ${outcfg.server.port:9050}
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  data:
+    mongodb:
+      host: ${mongodb.host}
+      port: ${mongodb.port}
+      database: ${mongodb.database}
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+  thymeleaf:
+    prefix: classpath:/pages/
+    suffix: .html
+    cache: false
+    mode: HTML5
+
+#打开actuator的所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+swagger:
+  docket:
+    actuator:
+      title: actuator模块
+      base-package: org.springframework.boot.actuate.endpoint.web.servlet
+    task:
+      title: task模块
+      base-package: com.task.server.controller
