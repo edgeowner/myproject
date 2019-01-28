@@ -1,0 +1,71 @@
+server:
+  port: ${outcfg.server.port:9040}
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  data:
+    mongodb:
+      host: ${mongodb.host}
+      port: ${mongodb.port}
+      database: ${mongodb.database}
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+  thymeleaf:
+    prefix: classpath:/pages/
+    suffix: .html
+    cache: false
+    mode: HTML5
+
+xiehua:
+  sms:
+    account1: ${sms.account1}
+    password1: ${sms.password1}
+    account2: ${sms.account2}
+    password2: ${sms.password2}
+    open: ${sms.open}
+
+#打开actuator的所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# 使用信号量隔离方式
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 10000
+          semaphore:
+            maxConcurrentRequests: 50
+
+# 均衡负载  DefaultClientConfigImpl  配置类
+ribbon:
+  ConnectTimeout: 1000 #ribbon请求连接的超时时间
+  ReadTimeout: 6000 #请求处理的超时时间
+
+swagger:
+  global-operation-parameters[0]:
+    name: Authorization
+    description: 鉴权
+    model-ref: String
+    parameter_type: header
+    required: false
+  docket:
+    actuator:
+      title: actuator模块
+      base-package: org.springframework.boot.actuate.endpoint.web.servlet
+    notify:
+      title: notify模块
+      base-package: com.xiehua.notify.controller
