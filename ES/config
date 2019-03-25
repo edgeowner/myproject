@@ -1,0 +1,15 @@
+application.yml中：
+spring:
+  data:
+    elasticsearch:
+      cluster-name: ${elasticsearch.cluster-name}
+      cluster-nodes: ${elasticsearch.url}
+      repositories:
+        enabled: true
+
+远程配置文件中：
+elasticsearch:
+  host: 10.200.157.131
+  port: 9300
+  url: ${elasticsearch.host}:${elasticsearch.port}
+  cluster-name: zchz-dev
